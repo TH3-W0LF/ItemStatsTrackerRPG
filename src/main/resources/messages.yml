@@ -1,0 +1,93 @@
+# Arquivo de mensagens para o plugin ItemStatsTracker
+# Use a sintaxe do MiniMessage para cores e formatação: https://docs.advntr.dev/minimessage/format.html
+
+# Mensagens de Comando
+command:
+  no-permission: "<red>Você não tem permissão para usar este comando.</red>"
+  player-only: "<red>Este comando só pode ser executado por um jogador.</red>"
+  invalid-item: "<red>Você precisa estar segurando um item válido.</red>"
+  unknown-subcommand: "<red>Subcomando desconhecido.</red>"
+  reload-success: "<green>Configurações recarregadas com sucesso.</green>"
+
+  giverr:
+    usage: "<red>Uso: /ist giverr [jogador] <quantidade></red>"
+    player-not-found: "<red>Jogador '<player>' não encontrado.</red>"
+    invalid-amount: "<red>A quantidade '<amount>' é inválida.</red>"
+    target-no-item: "<red>O jogador <player> não está segurando um item.</red>"
+    success-sender: "<green>Você deu <amount> níveis de reincarnação para <player>.</green>"
+    success-target: "<green>Seu item recebeu <amount> níveis de reincarnação! Novo nível: <level>.</green>"
+  addeffect:
+    usage: "<red>Uso: /ist addeffect <plugin> <efeito> [detalhes...]</red>"
+    success: "<green>Efeito customizado aplicado:</green> <effect>"
+    duplicate: "<yellow>O item já possui o efeito:</yellow> <effect>"
+    invalid-effect: "<red>Efeito '<effect>' não foi reconhecido ou não está disponível.</red>"
+
+  info:
+    reincarnado-header: "<gold>Progresso para Reincarnação <level></gold>"
+    reincarnado-max-level: "<green>Este item já atingiu o nível máximo de reincarnação.</green>"
+    reincarnado-no-criteria: "<gray>Este item não possui critérios de reincarnação definidos.</gray>"
+    reincarnado-criterion-progress: " <gray><display_name>: <progress_bar> <current>/<required> (<percent>%)</gray>"
+    reincarnado-criterion-complete: " <green>✔ <display_name>: Completo!</green>"
+    enchant-upgrade-header: "<gold>Upgrades de Encantamento:</gold>"
+    enchant-upgrade-no-criteria: "<gray>Este item não possui encantamentos que possam ser aprimorados.</gray>"
+    enchant-upgrade-max-level: "<green>Todos os encantamentos deste item já estão no nível máximo.</green>"
+    enchant-upgrade-progress: " <gray><display_name>: <progress_bar> <percent>%</gray>"
+
+  reincarnado:
+    fail: "<red>O item ainda não atende a todos os requisitos para reincarnar.</red>"
+    success: "<green>Parabéns! Seu item reincarnou para o nível <level>!</green>"
+    reset-info: "<gray>As estatísticas necessárias para o próximo nível foram resetadas.</gray>"
+
+# Nomes de Estatísticas (usado na lore e nos critérios)
+stats:
+  ores_broken: "Minérios Quebrados"
+  wood_chopped: "Lenha Coletada"
+  farm_harvested: "Plantações Colhidas"
+  blocks_broken: "Blocos Excavados"
+  blocks_dug: "Blocos Excavados"
+  blocks_total: "Blocos Totais"
+  damage_dealt: "Dano Total"
+  damage_dealt_player: "Dano em Jogadores"
+  damage_dealt_mob: "Dano em Mobs"
+  damage_dealt_undead: "Dano em Mortos-Vivos"
+  damage_taken: "Dano Recebido"
+  damage_taken_total: "Dano Recebido [Total]"
+  damage_blocked: "Dano Suportado"
+  mob_kills: "Mobs Abatidos [PvE]"
+  player_kills: "Players Mortos [PvP]"
+  item_level: "Nível do Item"
+  elytra_flight_time: "Tempo de Voo"
+  bow_arrows_shot: "Alvos na Mira"
+  crossbow_arrows_shot: "Alvos na Mira"
+  trident_thrown: "Lançamentos"
+  trident_damage: "Dano com Tridente"
+  mace_fall_height: "Altura Máxima"
+  mace_max_damage: "Maior Dano Aplicado"
+  hoe_soil_tilled: "Terras Aradas"
+
+# Formato da Lore
+lore:
+  level: "<white>Nível <level></white>"
+  owner: "<gray>Dono: <owner></gray>"
+  reincarnado-level: "<gradient:#9d50bb:#6e48aa><bold>Reincarnação <level></bold></gradient>"
+  reincarnado-bonus: "<gray>Bônus de Drop: <#00F66A>+<bonus>%</#00F66A>"
+  stats-header: "<gradient:#f09819:#edde5d><bold>Estatísticas:</bold></gradient>"
+  stat-line: "<gray><stat_name>: <value></gray>"
+  resistance-header: "<gradient:#ff6b6b:#8b0000><bold>Bônus de Resistência:</bold></gradient>"
+  resistance-line: "<gray>Resistência a <cause>: <green>+<percent>%</green>"
+  attack-header: "<gradient:#ff6b6b:#8b0000><bold>Bônus de Ataque:</bold></gradient>"
+  attack-line: "<gray>Ataque a <target>: <green>+<percent>%</green>"
+  tool-header: "<gradient:#ff6b6b:#8b0000><bold>Bônus de Ferramenta:</bold></gradient>"
+  tool-line: "<gray><bonus>: <green>+<percent>%</green>"
+  effects-header: "<gradient:#4facfe:#00f2fe><bold>Efeitos:</bold></gradient>"
+  magical-effects-header: "<bold><#E43A96>M<#DD3E9B>á<#D7419F>g<#D045A4>i<#C949A8>c<#C24DAD>o<#BC50B1>s<#B554B6>:</bold>"
+  enchant-upgrade-header: "<gold>Upgrades de Encantamento:</gold>"
+  untradable: "<dark_red>Item Intransferível</dark_red>"
+  mestre-badge: "<gradient:gold:yellow><bold>ITEM MESTRE</bold></gradient>"
+
+setbonus:
+  stage:
+    partial: "<gradient:#f7c654:#f7e7a3><pieces> Peças</gradient>"
+    full: "<gradient:#ffd166:#ffe598><bold>Conjunto Completo</bold></gradient>"
+  activated: "<gradient:#0df7a0:#2affc4><bold>▲ Poder do Conjunto</bold></gradient> <gray>[<stage>]</gray> <white><bonus_name></white>"
+  deactivated: "<gradient:#ff6868:#ff1f4d><bold>▼ Poder do Conjunto</bold></gradient> <gray>[<stage>]</gray> <gray><bonus_name></gray>"

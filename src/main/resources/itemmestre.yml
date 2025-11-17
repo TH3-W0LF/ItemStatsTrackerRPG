@@ -1,0 +1,18 @@
+# Configuração do ITEM MESTRE
+item_mestre:
+  level: 1000
+  # Mensagem global quando um item atinge o nível mestre (MiniMessage)
+  broadcast_message: "<gradient:gold:yellow><bold>ITEM MESTRE!</bold></gradient> <white><player></white> dominou <aqua><item></aqua>"
+  # Comandos extras executados pelo console quando o nível for atingido
+  # Placeholders: {player}, {item}
+  extra_commands:
+    - "tellraw @a {\"text\":\"\",\"extra\":[{\"text\":\"✦ \",\"color\":\"yellow\"},{\"text\":\"ITEM MESTRE CONQUISTADO\",\"color\":\"gold\",\"bold\":true},{\"text\":\" » \",\"color\":\"dark_gray\"},{\"text\":\"{player}\",\"color\":\"white\",\"bold\":true},{\"text\":\" dominou \",\"color\":\"gray\"},{\"text\":\"{item}\",\"color\":\"aqua\",\"bold\":true}]}"
+
+  rename:
+    enabled: true
+    # Se true, usará um comando de outro plugin para renomear o item
+    use-command: true
+    # Placeholders: {player}, {new_name}
+    command-template: "itemeditar renomear {player} {new_name}"
+    # Nome novo caso não use comando (MiniMessage) ou para montar {new_name}
+    name-template: "<gradient:gold:yellow><bold>ITEM MESTRE</bold></gradient> <gray><base_name>"

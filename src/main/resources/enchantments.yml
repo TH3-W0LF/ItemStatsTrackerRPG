@@ -1,0 +1,1712 @@
+# Configuração para exibição personalizada de encantamentos na lore.
+# Use a sintaxe MiniMessage para cores, gradientes e placeholders (se aplicável).
+# As cores normais do Minecraft (&0-&f) também são suportadas.
+
+# Encantamentos Vanilla - Cores elegantes e temáticas
+ENCHANTMENTS:
+  DURABILITY:
+    display-name: "Inquebrável"
+    lore-format: "<gradient:#e8e8e8:#ffffff>✦ Inquebrável %roman_level%</gradient>"
+  DIG_SPEED:
+    display-name: "Eficiência"
+    lore-format: "<gradient:#d0d0d0:#f0f0f0>✦ Eficiência %roman_level%</gradient>"
+  LOOT_BONUS_BLOCKS:
+    display-name: "Fortuna"
+    lore-format: "<gradient:#ffd700:#ffed4e>✦ Fortuna %roman_level%</gradient>"
+  SHARPNESS:
+    display-name: "Afiação"
+    lore-format: "<gradient:#c0c0c0:#e0e0e0>✦ Afiação %roman_level%</gradient>"
+  FIRE_ASPECT:
+    display-name: "Aspecto Flamejante"
+    lore-format: "<gradient:#ff8c42:#ffb366>✦ Aspecto Flamejante %roman_level%</gradient>"
+  MENDING:
+    display-name: "Remendo"
+    lore-format: "<gradient:#90ee90:#b0ffb0>✦ Remendo</gradient>"
+  PROTECTION:
+    display-name: "Proteção"
+    lore-format: "<gradient:#d8d8d8:#f5f5f5>✦ Proteção %roman_level%</gradient>"
+  BLAST_PROTECTION:
+    display-name: "Proteção contra Explosões"
+    lore-format: "<gradient:#e0e0e0:#f8f8f8>✦ Proteção contra Explosões %roman_level%</gradient>"
+  FEATHER_FALLING:
+    display-name: "Peso Pena"
+    lore-format: "<gradient:#e8e8e8:#ffffff>✦ Peso Pena %roman_level%</gradient>"
+  UNBREAKING:
+    display-name: "Inquebrável"
+    lore-format: "<gradient:#e8e8e8:#ffffff>✦ Inquebrável %roman_level%</gradient>"
+  SMITE:
+    display-name: "Julgamento"
+    lore-format: "<gradient:#c8c8c8:#e8e8e8>✦ Julgamento %roman_level%</gradient>"
+  BANE_OF_ARTHROPODS:
+    display-name: "Ruína dos Artrópodes"
+    lore-format: "<gradient:#c8c8c8:#e8e8e8>✦ Ruína dos Artrópodes %roman_level%</gradient>"
+  KNOCKBACK:
+    display-name: "Repulsão"
+    lore-format: "<gradient:#d0d0d0:#f0f0f0>✦ Repulsão %roman_level%</gradient>"
+  LOOT_BONUS_MOBS:
+    display-name: "Pilhagem"
+    lore-format: "<gradient:#ffd700:#ffed4e>✦ Pilhagem %roman_level%</gradient>"
+  SWEEPING_EDGE:
+    display-name: "Corte Varredor"
+    lore-format: "<gradient:#c0c0c0:#e0e0e0>✦ Corte Varredor %roman_level%</gradient>"
+  PROJECTILE_PROTECTION:
+    display-name: "Proteção contra Projéteis"
+    lore-format: "<gradient:#d0d0d0:#f0f0f0>✦ Proteção contra Projéteis %roman_level%</gradient>"
+  FIRE_PROTECTION:
+    display-name: "Proteção contra Fogo"
+    lore-format: "<gradient:#ff8c42:#ffb366>✦ Proteção contra Fogo %roman_level%</gradient>"
+  RESPIRATION:
+    display-name: "Respiração"
+    lore-format: "<gradient:#4facfe:#00f2fe>✦ Respiração %roman_level%</gradient>"
+  AQUA_AFFINITY:
+    display-name: "Afinidade Aquática"
+    lore-format: "<gradient:#00d2ff:#3a7bd5>✦ Afinidade Aquática</bold></gradient>"
+  DEPTH_STRIDER:
+    display-name: "Passos Profundos"
+    lore-format: "<gradient:#00c9ff:#92fe9d>✦ Passos Profundos %roman_level%</gradient>"
+  SOUL_SPEED:
+    display-name: "Velocidade das Almas"
+    lore-format: "<gradient:#9d50bb:#6e48aa>✦ Velocidade das Almas %roman_level%</gradient>"
+  SWIFT_SNEAK:
+    display-name: "Furtividade Rápida"
+    lore-format: "<gradient:#d0d0d0:#f0f0f0>✦ Furtividade Rápida %roman_level%</gradient>"
+  BINDING_CURSE:
+    display-name: "Maldição da Ligação"
+    lore-format: "<gradient:#8b0000:#a00000>✦ Maldição da Ligação</bold></gradient>"
+  VANISHING_CURSE:
+    display-name: "Maldição do Desaparecimento"
+    lore-format: "<gradient:#8b0000:#a00000>✦ Maldição do Desaparecimento</bold></gradient>"
+  SILK_TOUCH:
+    display-name: "Toque Suave"
+    lore-format: "<gradient:#d4af37:#f4d03f>✦ Toque Suave</bold></gradient>"
+  LOOTING:
+    display-name: "Pilhagem"
+    lore-format: "<gradient:#ffd700:#ffed4e>✦ Pilhagem %roman_level%</gradient>"
+  POWER:
+    display-name: "Poder"
+    lore-format: "<gradient:#c0c0c0:#e0e0e0>✦ Poder %roman_level%</gradient>"
+  PUNCH:
+    display-name: "Impacto"
+    lore-format: "<gradient:#b0b0b0:#d0d0d0>✦ Impacto %roman_level%</gradient>"
+  FLAME:
+    display-name: "Chama"
+    lore-format: "<gradient:#ff8c42:#ffb366>✦ Chama</bold></gradient>"
+  INFINITY:
+    display-name: "Infinidade"
+    lore-format: "<gradient:#d4af37:#f4d03f>✦ Infinidade</bold></gradient>"
+  MULTISHOT:
+    display-name: "Múltiplos Tiros"
+    lore-format: "<gradient:#c0c0c0:#e0e0e0>✦ Múltiplos Tiros</bold></gradient>"
+  PIERCING:
+    display-name: "Perfuração"
+    lore-format: "<gradient:#a0a0a0:#c0c0c0>✦ Perfuração %roman_level%</gradient>"
+  QUICK_CHARGE:
+    display-name: "Carga Rápida"
+    lore-format: "<gradient:#d0d0d0:#f0f0f0>✦ Carga Rápida %roman_level%</gradient>"
+  RIPTIDE:
+    display-name: "Correnteza"
+    lore-format: "<gradient:#00c9ff:#92fe9d>✦ Correnteza %roman_level%</gradient>"
+  CHANNELING:
+    display-name: "Condutividade"
+    lore-format: "<gradient:#9d50bb:#6e48aa>✦ Condutividade</bold></gradient>"
+  LOYALTY:
+    display-name: "Lealdade"
+    lore-format: "<gradient:#c0c0c0:#e0e0e0>✦ Lealdade %roman_level%</gradient>"
+  IMPALING:
+    display-name: "Empalação"
+    lore-format: "<gradient:#a0a0a0:#c0c0c0>✦ Empalação %roman_level%</gradient>"
+  EFFICIENCY:
+    display-name: "Eficiência"
+    lore-format: "<gradient:#d0d0d0:#f0f0f0>✦ Eficiência %roman_level%</gradient>"
+  FORTUNE:
+    display-name: "Fortuna"
+    lore-format: "<gradient:#ffd700:#ffed4e>✦ Fortuna %roman_level%</gradient>"
+  LUCK_OF_THE_SEA:
+    display-name: "Sorte do Mar"
+    lore-format: "<gradient:#00ff88:#00ffaa>✦ Sorte do Mar %roman_level%</gradient>"
+  LURE:
+    display-name: "Isca"
+    lore-format: "<gradient:#d4af37:#f4d03f>✦ Isca %roman_level%</gradient>"
+
+# Encantamentos do AdvancedEnchantments (AE) - Cores temáticas vibrantes
+CUSTOM_EFFECTS:
+  # Encantamentos de Vida e Regeneração
+  AE:LIFESTEAL:
+    display-name: "Lifesteal"
+    lore-format: "<gradient:#ff4d4d:#ff9f1a>✦ Lifesteal %roman_level%</gradient>"
+    default-level: 5
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:OVERLOAD:
+    display-name: "Overload"
+    lore-format: "<gradient:#ff5f6d:#ffc371><bold>❤ Overload %roman_level%</gradient>"
+    default-level: 3
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:REGENERATION:
+    display-name: "Regeneration"
+    lore-format: "<gradient:#00ff88:#00ffaa>✦ Regeneration %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  
+  # Encantamentos de Dano e Combate
+  AE:BERSERK:
+    display-name: "Berserk"
+    lore-format: "<gradient:#ff3366:#ff6b9d>✦ Berserk %roman_level%</gradient>"
+    default-level: 5
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:FRENZY:
+    display-name: "Frenzy"
+    lore-format: "<gradient:#ff3366:#ff6b9d>✦ Frenzy %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:SHARPNESS:
+    display-name: "Sharpness"
+    lore-format: "<gradient:#ff6b6b:#ff8787>✦ Sharpness %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:SMITE:
+    display-name: "Smite"
+    lore-format: "<gradient:#ffa500:#ffd700>✦ Smite %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  
+  # Encantamentos de Elemento
+  AE:FROST:
+    display-name: "Frost"
+    lore-format: "<gradient:#4facfe:#00f2fe>✦ Frost %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:FROZEN:
+    display-name: "Frozen"
+    lore-format: "<gradient:#4facfe:#00f2fe>✦ Frozen %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:FLAME:
+    display-name: "Flame"
+    lore-format: "<gradient:#ff6b35:#ff8c42>✦ Flame %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:THUNDER:
+    display-name: "Thunder"
+    lore-format: "<gradient:#9d50bb:#6e48aa>✦ Thunder %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:THUNDERLORD:
+    display-name: "Thunderlord"
+    lore-format: "<gradient:#9d50bb:#6e48aa>✦ Thunderlord %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:POISON:
+    display-name: "Poison"
+    lore-format: "<gradient:#7bff00:#a8ff42>✦ Poison %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  
+  # Encantamentos de Utilidade e Sorte
+  AE:LUCK:
+    display-name: "Luck"
+    lore-format: "<gradient:#00ff88:#00ffaa>✦ Luck %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:LUCKY:
+    display-name: "Lucky"
+    lore-format: "<gradient:#00ff88:#00ffaa>✦ Lucky %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:EPICNESS:
+    display-name: "Epicness"
+    lore-format: "<gradient:#ffd700:#ffed4e>✦ Epicness %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:ABIDING:
+    display-name: "Abiding"
+    lore-format: "<gradient:#667eea:#764ba2>✦ Abiding %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:ALLURE:
+    display-name: "Allure"
+    lore-format: "<gradient:#f093fb:#f5576c>✦ Allure %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:AMBIT:
+    display-name: "Ambit"
+    lore-format: "<gradient:#fa709a:#fee140>✦ Ambit %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:ANGELIC:
+    display-name: "Angelic"
+    lore-format: "<gradient:#ffeaa7:#fdcb6e>✦ Angelic %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:AQUA:
+    display-name: "Aqua"
+    lore-format: "<gradient:#00c9ff:#92fe9d>✦ Aqua %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:AQUATIC:
+    display-name: "Aquatic"
+    lore-format: "<gradient:#00d2ff:#3a7bd5>✦ Aquatic %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:ARCHER:
+    display-name: "Archer"
+    lore-format: "<gradient:#f09819:#edde5d>✦ Archer %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:ARMORED:
+    display-name: "Armored"
+    lore-format: "<gradient:#b8b8b8:#d8d8d8>✦ Armored %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:ARROWBREAK:
+    display-name: "Arrowbreak"
+    lore-format: "<gradient:#c0c0c0:#e0e0e0>✦ Arrowbreak %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:BLESSED:
+    display-name: "Blessed"
+    lore-format: "<gradient:#ffeaa7:#fdcb6e>✦ Blessed %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:BLINDING:
+    display-name: "Blinding"
+    lore-format: "<gradient:#8b0000:#a00000>✦ Blinding %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:BLIZZARD:
+    display-name: "Blizzard"
+    lore-format: "<gradient:#4facfe:#00f2fe>✦ Blizzard %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:BOOST:
+    display-name: "Boost"
+    lore-format: "<gradient:#ff6b6b:#ff8787>✦ Boost %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:BRUTAL:
+    display-name: "Brutal"
+    lore-format: "<gradient:#ff3366:#ff6b9d>✦ Brutal %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:CHARGED:
+    display-name: "Charged"
+    lore-format: "<gradient:#9d50bb:#6e48aa>✦ Charged %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:CRITICAL:
+    display-name: "Critical"
+    lore-format: "<gradient:#ff4d4d:#ff9f1a>✦ Critical %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:CURSE:
+    display-name: "Curse"
+    lore-format: "<gradient:#8b0000:#a00000>✦ Curse %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:DEATH:
+    display-name: "Death"
+    lore-format: "<gradient:#4a4a4a:#6a6a6a>✦ Death %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:DEVOUR:
+    display-name: "Devour"
+    lore-format: "<gradient:#8b0000:#a00000>✦ Devour %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:DRAGON:
+    display-name: "Dragon"
+    lore-format: "<gradient:#ff6b35:#ff8c42>✦ Dragon %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:EXPLOSIVE:
+    display-name: "Explosive"
+    lore-format: "<gradient:#ff8c42:#ffb366>✦ Explosive %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:FIRE:
+    display-name: "Fire"
+    lore-format: "<gradient:#ff6b35:#ff8c42>✦ Fire %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:FLASH:
+    display-name: "Flash"
+    lore-format: "<gradient:#ffd700:#ffed4e>✦ Flash %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:GLOWING:
+    display-name: "Glowing"
+    lore-format: "<gradient:#ffd700:#ffed4e>✦ Glowing %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:HASTE:
+    display-name: "Haste"
+    lore-format: "<gradient:#d4af37:#f4d03f>✦ Haste %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:HEALING:
+    display-name: "Healing"
+    lore-format: "<gradient:#00ff88:#00ffaa>✦ Healing %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:ICE:
+    display-name: "Ice"
+    lore-format: "<gradient:#4facfe:#00f2fe>✦ Ice %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:INQUISITIVE:
+    display-name: "Inquisitive"
+    lore-format: "<gradient:#667eea:#764ba2>✦ Inquisitive %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:LEVITATE:
+    display-name: "Levitate"
+    lore-format: "<gradient:#00c9ff:#92fe9d>✦ Levitate %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:LEVITATION:
+    display-name: "Levitation"
+    lore-format: "<gradient:#00c9ff:#92fe9d>✦ Levitation %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:LIGHTNING:
+    display-name: "Lightning"
+    lore-format: "<gradient:#9d50bb:#6e48aa>✦ Lightning %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:METAMORPHOSIS:
+    display-name: "Metamorphosis"
+    lore-format: "<gradient:#f093fb:#f5576c>✦ Metamorphosis %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:MOON:
+    display-name: "Moon"
+    lore-format: "<gradient:#ffeaa7:#fdcb6e>✦ Moon %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:MYSTIC:
+    display-name: "Mystic"
+    lore-format: "<gradient:#667eea:#764ba2>✦ Mystic %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:NIGHT:
+    display-name: "Night"
+    lore-format: "<gradient:#4a4a4a:#6a6a6a>✦ Night %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:OMEGA:
+    display-name: "Omega"
+    lore-format: "<gradient:#ffd700:#ffed4e>✦ Omega %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:PARALYZE:
+    display-name: "Paralyze"
+    lore-format: "<gradient:#7bff00:#a8ff42>✦ Paralyze %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:PHANTOM:
+    display-name: "Phantom"
+    lore-format: "<gradient:#4a4a4a:#6a6a6a>✦ Phantom %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:PLAGUE:
+    display-name: "Plague"
+    lore-format: "<gradient:#7bff00:#a8ff42>✦ Plague %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:PLASMA:
+    display-name: "Plasma"
+    lore-format: "<gradient:#ff6b35:#ff8c42>✦ Plasma %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:PRISMARINE:
+    display-name: "Prismarine"
+    lore-format: "<gradient:#00d2ff:#3a7bd5>✦ Prismarine %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:RAINBOW:
+    display-name: "Rainbow"
+    lore-format: "<gradient:#f093fb:#f5576c>✦ Rainbow %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:REAPER:
+    display-name: "Reaper"
+    lore-format: "<gradient:#4a4a4a:#6a6a6a>✦ Reaper %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:REFLECT:
+    display-name: "Reflect"
+    lore-format: "<gradient:#c0c0c0:#e0e0e0>✦ Reflect %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:REVENGE:
+    display-name: "Revenge"
+    lore-format: "<gradient:#ff3366:#ff6b9d>✦ Revenge %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:SHOCK:
+    display-name: "Shock"
+    lore-format: "<gradient:#9d50bb:#6e48aa>✦ Shock %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:SHRIEK:
+    display-name: "Shriek"
+    lore-format: "<gradient:#8b0000:#a00000>✦ Shriek %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:SKY:
+    display-name: "Sky"
+    lore-format: "<gradient:#00c9ff:#92fe9d>✦ Sky %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:SLOW:
+    display-name: "Slow"
+    lore-format: "<gradient:#4a4a4a:#6a6a6a>✦ Slow %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:SOUL:
+    display-name: "Soul"
+    lore-format: "<gradient:#9d50bb:#6e48aa>✦ Soul %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:SPECTRAL:
+    display-name: "Spectral"
+    lore-format: "<gradient:#667eea:#764ba2>✦ Spectral %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:SPEED:
+    display-name: "Speed"
+    lore-format: "<gradient:#00ff88:#00ffaa>✦ Speed %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:SPIDER:
+    display-name: "Spider"
+    lore-format: "<gradient:#7bff00:#a8ff42>✦ Spider %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:SPIRIT:
+    display-name: "Spirit"
+    lore-format: "<gradient:#667eea:#764ba2>✦ Spirit %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:STAR:
+    display-name: "Star"
+    lore-format: "<gradient:#ffd700:#ffed4e>✦ Star %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:STORM:
+    display-name: "Storm"
+    lore-format: "<gradient:#9d50bb:#6e48aa>✦ Storm %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:STRENGTH:
+    display-name: "Strength"
+    lore-format: "<gradient:#ff3366:#ff6b9d>✦ Strength %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:SUMMON:
+    display-name: "Summon"
+    lore-format: "<gradient:#4a4a4a:#6a6a6a>✦ Summon %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:SUN:
+    display-name: "Sun"
+    lore-format: "<gradient:#ffd700:#ffed4e>✦ Sun %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:TELEPATHY:
+    display-name: "Telepathy"
+    lore-format: "<gradient:#667eea:#764ba2>✦ Telepathy %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:TOXIC:
+    display-name: "Toxic"
+    lore-format: "<gradient:#7bff00:#a8ff42>✦ Toxic %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:VAMPIRE:
+    display-name: "Vampire"
+    lore-format: "<gradient:#8b0000:#a00000>✦ Vampire %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:VENOM:
+    display-name: "Venom"
+    lore-format: "<gradient:#7bff00:#a8ff42>✦ Venom %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:VOID:
+    display-name: "Void"
+    lore-format: "<gradient:#4a4a4a:#6a6a6a>✦ Void %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:WEAKNESS:
+    display-name: "Weakness"
+    lore-format: "<gradient:#4a4a4a:#6a6a6a>✦ Weakness %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:WIND:
+    display-name: "Wind"
+    lore-format: "<gradient:#00c9ff:#92fe9d>✦ Wind %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:WITHER:
+    display-name: "Wither"
+    lore-format: "<gradient:#4a4a4a:#6a6a6a>✦ Wither %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  
+  # Encantamentos de Mineração e Utilidade Adicionais
+  # Vein Miner - aceita tanto VEIN_MINER quanto VEINMINER
+  # Nota: No AE, o nome correto do encantamento é "veinminer" (sem underscore)
+  AE:VEIN_MINER:
+    display-name: "Vein Miner"
+    lore-format: "<gradient:#d4af37:#f4d03f>✦ Vein Miner %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant veinminer {level}"
+  AE:VEINMINER:
+    display-name: "Vein Miner"
+    lore-format: "<gradient:#d4af37:#f4d03f>✦ Vein Miner %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant veinminer {level}"
+  AE:EXCAVATION:
+    display-name: "Excavation"
+    lore-format: "<gradient:#d4af37:#f4d03f>✦ Excavation %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:SMELTING:
+    display-name: "Smelting"
+    lore-format: "<gradient:#ff6b35:#ff8c42>✦ Smelting %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:TELEKINESIS:
+    display-name: "Telekinesis"
+    lore-format: "<gradient:#667eea:#764ba2>✦ Telekinesis %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:EXPERIENCE:
+    display-name: "Experience"
+    lore-format: "<gradient:#00ff88:#00ffaa>✦ Experience %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:OXYGENATE:
+    display-name: "Oxygenate"
+    lore-format: "<gradient:#00c9ff:#92fe9d>✦ Oxygenate %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:VACUUM:
+    display-name: "Vacuum"
+    lore-format: "<gradient:#9d50bb:#6e48aa>✦ Vacuum %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:BLINDNESS:
+    display-name: "Blindness"
+    lore-format: "<gradient:#4a4a4a:#6a6a6a>✦ Blindness %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:CONFUSION:
+    display-name: "Confusion"
+    lore-format: "<gradient:#8b0000:#a00000>✦ Confusion %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:NAUSEA:
+    display-name: "Nausea"
+    lore-format: "<gradient:#8b0000:#a00000>✦ Nausea %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:MINING_FATIGUE:
+    display-name: "Mining Fatigue"
+    lore-format: "<gradient:#4a4a4a:#6a6a6a>✦ Mining Fatigue %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:SLOWNESS:
+    display-name: "Slowness"
+    lore-format: "<gradient:#4a4a4a:#6a6a6a>✦ Slowness %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:WITHER_EFFECT:
+    display-name: "Wither Effect"
+    lore-format: "<gradient:#4a4a4a:#6a6a6a>✦ Wither Effect %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:HUNGER:
+    display-name: "Hunger"
+    lore-format: "<gradient:#8b0000:#a00000>✦ Hunger %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:ABSORPTION:
+    display-name: "Absorption"
+    lore-format: "<gradient:#ffd700:#ffed4e>✦ Absorption %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:CONDUIT_POWER:
+    display-name: "Conduit Power"
+    lore-format: "<gradient:#00c9ff:#92fe9d>✦ Conduit Power %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:DOLPHINS_GRACE:
+    display-name: "Dolphin's Grace"
+    lore-format: "<gradient:#00c9ff:#92fe9d>✦ Dolphin's Grace %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:HERO_OF_THE_VILLAGE:
+    display-name: "Hero of the Village"
+    lore-format: "<gradient:#ffd700:#ffed4e>✦ Hero of the Village %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:BAD_OMEN:
+    display-name: "Bad Omen"
+    lore-format: "<gradient:#8b0000:#a00000>✦ Bad Omen %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:WATER_BREATHING:
+    display-name: "Water Breathing"
+    lore-format: "<gradient:#00c9ff:#92fe9d>✦ Water Breathing %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:INVISIBILITY:
+    display-name: "Invisibility"
+    lore-format: "<gradient:#667eea:#764ba2>✦ Invisibility %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:JUMP_BOOST:
+    display-name: "Jump Boost"
+    lore-format: "<gradient:#00ff88:#00ffaa>✦ Jump Boost %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:RESISTANCE:
+    display-name: "Resistance"
+    lore-format: "<gradient:#c0c0c0:#e0e0e0>✦ Resistance %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:FIRE_RESISTANCE:
+    display-name: "Fire Resistance"
+    lore-format: "<gradient:#ff6b35:#ff8c42>✦ Fire Resistance %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:MINING_LUCK:
+    display-name: "Mining Luck"
+    lore-format: "<gradient:#ffd700:#ffed4e>✦ Mining Luck %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:MOB_SLAYER:
+    display-name: "Mob Slayer"
+    lore-format: "<gradient:#ff3366:#ff6b9d>✦ Mob Slayer %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:EXECUTE:
+    display-name: "Execute"
+    lore-format: "<gradient:#ff4d4d:#ff9f1a>✦ Execute %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:FIRST_STRIKE:
+    display-name: "First Strike"
+    lore-format: "<gradient:#ff6b6b:#ff8787>✦ First Strike %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:TRIPLE_STRIKE:
+    display-name: "Triple Strike"
+    lore-format: "<gradient:#ff3366:#ff6b9d>✦ Triple Strike %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:BLEED:
+    display-name: "Bleed"
+    lore-format: "<gradient:#8b0000:#a00000>✦ Bleed %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:CRUSH:
+    display-name: "Crush"
+    lore-format: "<gradient:#ff3366:#ff6b9d>✦ Crush %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:EXPLOSIVE_SHOT:
+    display-name: "Explosive Shot"
+    lore-format: "<gradient:#ff8c42:#ffb366>✦ Explosive Shot %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:PIERCE:
+    display-name: "Pierce"
+    lore-format: "<gradient:#a0a0a0:#c0c0c0>✦ Pierce %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:SNIPE:
+    display-name: "Snipe"
+    lore-format: "<gradient:#f09819:#edde5d>✦ Snipe %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:STUN:
+    display-name: "Stun"
+    lore-format: "<gradient:#4a4a4a:#6a6a6a>✦ Stun %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:VAMPIRE:
+    display-name: "Vampire"
+    lore-format: "<gradient:#8b0000:#a00000>✦ Vampire %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:WITHER_BLADE:
+    display-name: "Wither Blade"
+    lore-format: "<gradient:#4a4a4a:#6a6a6a>✦ Wither Blade %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:ALCHEMY:
+    display-name: "Alchemy"
+    lore-format: "<gradient:#7bff00:#a8ff42>✦ Alchemy %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:ENLIGHTENED:
+    display-name: "Enlightened"
+    lore-format: "<gradient:#ffd700:#ffed4e>✦ Enlightened %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:EXPERIENCE_BOOST:
+    display-name: "Experience Boost"
+    lore-format: "<gradient:#00ff88:#00ffaa>✦ Experience Boost %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:GLOW:
+    display-name: "Glow"
+    lore-format: "<gradient:#ffd700:#ffed4e>✦ Glow %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:ILLUMINATE:
+    display-name: "Illuminate"
+    lore-format: "<gradient:#ffd700:#ffed4e>✦ Illuminate %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:SHADOW:
+    display-name: "Shadow"
+    lore-format: "<gradient:#4a4a4a:#6a6a6a>✦ Shadow %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:SHROUD:
+    display-name: "Shroud"
+    lore-format: "<gradient:#667eea:#764ba2>✦ Shroud %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:GEARS:
+    display-name: "Gears"
+    lore-format: "<gradient:#c0c0c0:#e0e0e0>✦ Gears %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:REINFORCED:
+    display-name: "Reinforced"
+    lore-format: "<gradient:#b8b8b8:#d8d8d8>✦ Reinforced %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:TOUGHNESS:
+    display-name: "Toughness"
+    lore-format: "<gradient:#b8b8b8:#d8d8d8>✦ Toughness %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:VITALITY:
+    display-name: "Vitality"
+    lore-format: "<gradient:#ff4d4d:#ff9f1a>✦ Vitality %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:WELL_FED:
+    display-name: "Well Fed"
+    lore-format: "<gradient:#00ff88:#00ffaa>✦ Well Fed %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:FEATHERWEIGHT:
+    display-name: "Featherweight"
+    lore-format: "<gradient:#e8e8e8:#ffffff>✦ Featherweight %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:HEAVY:
+    display-name: "Heavy"
+    lore-format: "<gradient:#4a4a4a:#6a6a6a>✦ Heavy %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:WEIGHTLESS:
+    display-name: "Weightless"
+    lore-format: "<gradient:#00c9ff:#92fe9d>✦ Weightless %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  
+  # Encantamentos Adicionais do AdvancedEnchantments
+  AE:HARVEST:
+    display-name: "Harvest"
+    lore-format: "<gradient:#7bff00:#a8ff42>✦ Harvest %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:AUTOREEL:
+    display-name: "Auto Reel"
+    lore-format: "<gradient:#00c9ff:#92fe9d>✦ Auto Reel %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:GEMIFY:
+    display-name: "Gemify"
+    lore-format: "<gradient:#ffd700:#ffed4e>✦ Gemify %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:PLANTER:
+    display-name: "Planter"
+    lore-format: "<gradient:#7bff00:#a8ff42>✦ Planter %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:POTATOPLANTER:
+    display-name: "Potato Planter"
+    lore-format: "<gradient:#7bff00:#a8ff42>✦ Potato Planter %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:CARROTPLANTER:
+    display-name: "Carrot Planter"
+    lore-format: "<gradient:#7bff00:#a8ff42>✦ Carrot Planter %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:REPLANTER:
+    display-name: "Replanter"
+    lore-format: "<gradient:#7bff00:#a8ff42>✦ Replanter %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:STRIKE:
+    display-name: "Strike"
+    lore-format: "<gradient:#9d50bb:#6e48aa>✦ Strike %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:IMPACT:
+    display-name: "Impact"
+    lore-format: "<gradient:#ff3366:#ff6b9d>✦ Impact %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:TWINGE:
+    display-name: "Twinge"
+    lore-format: "<gradient:#8b0000:#a00000>✦ Twinge %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:JELLYLEGS:
+    display-name: "Jelly Legs"
+    lore-format: "<gradient:#e8e8e8:#ffffff>✦ Jelly Legs %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:WINGS:
+    display-name: "Wings"
+    lore-format: "<gradient:#00c9ff:#92fe9d>✦ Wings %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:HASTEN:
+    display-name: "Hasten"
+    lore-format: "<gradient:#d4af37:#f4d03f>✦ Hasten %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:REBREATHER:
+    display-name: "Rebreather"
+    lore-format: "<gradient:#00c9ff:#92fe9d>✦ Rebreather %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:DECAPITATION:
+    display-name: "Decapitation"
+    lore-format: "<gradient:#8b0000:#a00000>✦ Decapitation %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:FORCEFIELD:
+    display-name: "Forcefield"
+    lore-format: "<gradient:#c0c0c0:#e0e0e0>✦ Forcefield %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:FAMINE:
+    display-name: "Famine"
+    lore-format: "<gradient:#8b0000:#a00000>✦ Famine %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:WARD:
+    display-name: "Ward"
+    lore-format: "<gradient:#c0c0c0:#e0e0e0>✦ Ward %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:SHARPNESSHOOK:
+    display-name: "Sharpness Hook"
+    lore-format: "<gradient:#ff6b6b:#ff8787>✦ Sharpness Hook %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:POISONEDHOOK:
+    display-name: "Poisoned Hook"
+    lore-format: "<gradient:#7bff00:#a8ff42>✦ Poisoned Hook %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:FIREHOOK:
+    display-name: "Fire Hook"
+    lore-format: "<gradient:#ff6b35:#ff8c42>✦ Fire Hook %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:MOLTEN:
+    display-name: "Molten"
+    lore-format: "<gradient:#ff6b35:#ff8c42>✦ Molten %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:RAVENOUS:
+    display-name: "Ravenous"
+    lore-format: "<gradient:#00ff88:#00ffaa>✦ Ravenous %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:EXPLOSIVEDEMISE:
+    display-name: "Explosive Demise"
+    lore-format: "<gradient:#ff8c42:#ffb366>✦ Explosive Demise %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:ENDERSLAYER:
+    display-name: "Ender Slayer"
+    lore-format: "<gradient:#9d50bb:#6e48aa>✦ Ender Slayer %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:DEATHPUNCH:
+    display-name: "Death Punch"
+    lore-format: "<gradient:#4a4a4a:#6a6a6a>✦ Death Punch %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:BONECRUSHER:
+    display-name: "Bone Crusher"
+    lore-format: "<gradient:#4a4a4a:#6a6a6a>✦ Bone Crusher %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:IMMOLATE:
+    display-name: "Immolate"
+    lore-format: "<gradient:#ff6b35:#ff8c42>✦ Immolate %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:SLAYER:
+    display-name: "Slayer"
+    lore-format: "<gradient:#ff3366:#ff6b9d>✦ Slayer %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:HUNTER:
+    display-name: "Hunter"
+    lore-format: "<gradient:#f09819:#edde5d>✦ Hunter %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:BEASTSLAYER:
+    display-name: "Beastslayer"
+    lore-format: "<gradient:#ff3366:#ff6b9d>✦ Beastslayer %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:HOOK:
+    display-name: "Hook"
+    lore-format: "<gradient:#00c9ff:#92fe9d>✦ Hook %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:BAIT:
+    display-name: "Bait"
+    lore-format: "<gradient:#00ff88:#00ffaa>✦ Bait %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:SNAP:
+    display-name: "Snap"
+    lore-format: "<gradient:#00c9ff:#92fe9d>✦ Snap %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:PERMAFROST:
+    display-name: "Permafrost"
+    lore-format: "<gradient:#4facfe:#00f2fe>✦ Permafrost %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:SOULLESS:
+    display-name: "Soulless"
+    lore-format: "<gradient:#4a4a4a:#6a6a6a>✦ Soulless %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:NETHERSLAYER:
+    display-name: "Nether Slayer"
+    lore-format: "<gradient:#ff6b35:#ff8c42>✦ Nether Slayer %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:BLIND:
+    display-name: "Blind"
+    lore-format: "<gradient:#4a4a4a:#6a6a6a>✦ Blind %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:POISONED:
+    display-name: "Poisoned"
+    lore-format: "<gradient:#7bff00:#a8ff42>✦ Poisoned %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:REFORGED:
+    display-name: "Reforged"
+    lore-format: "<gradient:#b8b8b8:#d8d8d8>✦ Reforged %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:SNARE:
+    display-name: "Snare"
+    lore-format: "<gradient:#4a4a4a:#6a6a6a>✦ Snare %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:SPRINGS:
+    display-name: "Springs"
+    lore-format: "<gradient:#00ff88:#00ffaa>✦ Springs %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:UNDEADRUSE:
+    display-name: "Undead Ruse"
+    lore-format: "<gradient:#4a4a4a:#6a6a6a>✦ Undead Ruse %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:VOODOO:
+    display-name: "Voodoo"
+    lore-format: "<gradient:#8b0000:#a00000>✦ Voodoo %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:PERISH:
+    display-name: "Perish"
+    lore-format: "<gradient:#4a4a4a:#6a6a6a>✦ Perish %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:SMOKEBOMB:
+    display-name: "Smoke Bomb"
+    lore-format: "<gradient:#4a4a4a:#6a6a6a>✦ Smoke Bomb %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:INFERNAL:
+    display-name: "Infernal"
+    lore-format: "<gradient:#ff6b35:#ff8c42>✦ Infernal %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:EXTINGUISH:
+    display-name: "Extinguish"
+    lore-format: "<gradient:#00c9ff:#92fe9d>✦ Extinguish %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:SHOCKWAVE:
+    display-name: "Shockwave"
+    lore-format: "<gradient:#9d50bb:#6e48aa>✦ Shockwave %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:GREATSWORD:
+    display-name: "Greatsword"
+    lore-format: "<gradient:#ff6b6b:#ff8787>✦ Greatsword %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:BOWMASTER:
+    display-name: "Bowmaster"
+    lore-format: "<gradient:#f09819:#edde5d>✦ Bowmaster %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:HARDENED:
+    display-name: "Hardened"
+    lore-format: "<gradient:#b8b8b8:#d8d8d8>✦ Hardened %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:PATCH:
+    display-name: "Patch"
+    lore-format: "<gradient:#b8b8b8:#d8d8d8>✦ Patch %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:ROCKETESCAPE:
+    display-name: "Rocket Escape"
+    lore-format: "<gradient:#00c9ff:#92fe9d>✦ Rocket Escape %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:TRICKSTER:
+    display-name: "Trickster"
+    lore-format: "<gradient:#667eea:#764ba2>✦ Trickster %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:TIMBER:
+    display-name: "Timber"
+    lore-format: "<gradient:#7bff00:#a8ff42>✦ Timber %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:DISTANCE:
+    display-name: "Distance"
+    lore-format: "<gradient:#00ff88:#00ffaa>✦ Distance %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:CLEAVE:
+    display-name: "Cleave"
+    lore-format: "<gradient:#ff3366:#ff6b9d>✦ Cleave %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:ARROWDEFLECT:
+    display-name: "Arrow Deflect"
+    lore-format: "<gradient:#c0c0c0:#e0e0e0>✦ Arrow Deflect %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:ARROWBREAK:
+    display-name: "Arrow Break"
+    lore-format: "<gradient:#c0c0c0:#e0e0e0>✦ Arrow Break %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:DIMINISH:
+    display-name: "Diminish"
+    lore-format: "<gradient:#4a4a4a:#6a6a6a>✦ Diminish %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:INTERRUPT:
+    display-name: "Interrupt"
+    lore-format: "<gradient:#4a4a4a:#6a6a6a>✦ Interrupt %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:EXALTED:
+    display-name: "Exalted"
+    lore-format: "<gradient:#ffd700:#ffed4e>✦ Exalted %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:RAGDOLL:
+    display-name: "Ragdoll"
+    lore-format: "<gradient:#e8e8e8:#ffffff>✦ Ragdoll %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:BLOCK:
+    display-name: "Block"
+    lore-format: "<gradient:#c0c0c0:#e0e0e0>✦ Block %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:TRENCH:
+    display-name: "Trench"
+    lore-format: "<gradient:#d4af37:#f4d03f>✦ Trench %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:TUNNEL:
+    display-name: "Tunnel"
+    lore-format: "<gradient:#d4af37:#f4d03f>✦ Tunnel %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:DODGE:
+    display-name: "Dodge"
+    lore-format: "<gradient:#00ff88:#00ffaa>✦ Dodge %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:FUMBLE:
+    display-name: "Fumble"
+    lore-format: "<gradient:#ff8c42:#ffb366>✦ Fumble %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:TURMOIL:
+    display-name: "Turmoil"
+    lore-format: "<gradient:#8b0000:#a00000>✦ Turmoil %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:GUARDIANS:
+    display-name: "Guardians"
+    lore-format: "<gradient:#c0c0c0:#e0e0e0>✦ Guardians %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:ICEASPECT:
+    display-name: "Ice Aspect"
+    lore-format: "<gradient:#4facfe:#00f2fe>✦ Ice Aspect %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:MOMENTUM:
+    display-name: "Momentum"
+    lore-format: "<gradient:#00ff88:#00ffaa>✦ Momentum %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:RESTORE:
+    display-name: "Restore"
+    lore-format: "<gradient:#00ff88:#00ffaa>✦ Restore %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:IMPLANTS:
+    display-name: "Implants"
+    lore-format: "<gradient:#00ff88:#00ffaa>✦ Implants %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:OBSIDIANSHIELD:
+    display-name: "Obsidianshield"
+    lore-format: "<gradient:#ff6b35:#ff8c42>✦ Obsidianshield %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:MARKSMAN:
+    display-name: "Marksman"
+    lore-format: "<gradient:#f09819:#edde5d>✦ Marksman %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:POSEIDON:
+    display-name: "Poseidon"
+    lore-format: "<gradient:#00c9ff:#92fe9d>✦ Poseidon %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:SAFEGUARD:
+    display-name: "Safeguard"
+    lore-format: "<gradient:#c0c0c0:#e0e0e0>✦ Safeguard %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:DISAPPEAR:
+    display-name: "Disappear"
+    lore-format: "<gradient:#667eea:#764ba2>✦ Disappear %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:CONFUSE:
+    display-name: "Confuse"
+    lore-format: "<gradient:#8b0000:#a00000>✦ Confuse %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:DISINTEGRATE:
+    display-name: "Disintegrate"
+    lore-format: "<gradient:#ff3366:#ff6b9d>✦ Disintegrate %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:SHATTER:
+    display-name: "Shatter"
+    lore-format: "<gradient:#ff3366:#ff6b9d>✦ Shatter %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:DEVOUR:
+    display-name: "Devour"
+    lore-format: "<gradient:#8b0000:#a00000>✦ Devour %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:REPLENISH:
+    display-name: "Replenish"
+    lore-format: "<gradient:#00ff88:#00ffaa>✦ Replenish %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:HELLFIRE:
+    display-name: "Hellfire"
+    lore-format: "<gradient:#ff6b35:#ff8c42>✦ Hellfire %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:MISSILE:
+    display-name: "Missile"
+    lore-format: "<gradient:#ff6b35:#ff8c42>✦ Missile %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:LONGBOW:
+    display-name: "Longbow"
+    lore-format: "<gradient:#f09819:#edde5d>✦ Longbow %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:TANK:
+    display-name: "Tank"
+    lore-format: "<gradient:#b8b8b8:#d8d8d8>✦ Tank %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:SWORDSMAN:
+    display-name: "Swordsman"
+    lore-format: "<gradient:#ff6b6b:#ff8787>✦ Swordsman %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:REBOUND:
+    display-name: "Rebound"
+    lore-format: "<gradient:#00ff88:#00ffaa>✦ Rebound %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:NETHERLING:
+    display-name: "Netherling"
+    lore-format: "<gradient:#ff6b35:#ff8c42>✦ Netherling %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:ENDMASTER:
+    display-name: "Endmaster"
+    lore-format: "<gradient:#9d50bb:#6e48aa>✦ Endmaster %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:CREEPERARMOR:
+    display-name: "Creeper Armor"
+    lore-format: "<gradient:#7bff00:#a8ff42>✦ Creeper Armor %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:SPIRITS:
+    display-name: "Spirits"
+    lore-format: "<gradient:#ff6b35:#ff8c42>✦ Spirits %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:LAVAWALKER:
+    display-name: "Lava Walker"
+    lore-format: "<gradient:#ff6b35:#ff8c42>✦ Lava Walker %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:WATERWALKER:
+    display-name: "Water Walker"
+    lore-format: "<gradient:#00c9ff:#92fe9d>✦ Water Walker %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:JUDGEMENT:
+    display-name: "Judgement"
+    lore-format: "<gradient:#ffd700:#ffed4e>✦ Judgement %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:DIVERT:
+    display-name: "Divert"
+    lore-format: "<gradient:#00ff88:#00ffaa>✦ Divert %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:UNHOLY:
+    display-name: "Unholy"
+    lore-format: "<gradient:#4a4a4a:#6a6a6a>✦ Unholy %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:CHAOS:
+    display-name: "Chaos"
+    lore-format: "<gradient:#8b0000:#a00000>✦ Chaos %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:CONVULSE:
+    display-name: "Convulse"
+    lore-format: "<gradient:#00c9ff:#92fe9d>✦ Convulse %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:CHUNKY:
+    display-name: "Chunky"
+    lore-format: "<gradient:#b8b8b8:#d8d8d8>✦ Chunky %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:BARBARIAN:
+    display-name: "Barbarian"
+    lore-format: "<gradient:#ff3366:#ff6b9d>✦ Barbarian %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:LUCID:
+    display-name: "Lucid"
+    lore-format: "<gradient:#ffeaa7:#fdcb6e>✦ Lucid %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:DOUBLESTRIKE:
+    display-name: "Double Strike"
+    lore-format: "<gradient:#ff6b6b:#ff8787>✦ Double Strike %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:INFLAME:
+    display-name: "Inflame"
+    lore-format: "<gradient:#ff6b35:#ff8c42>✦ Inflame %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:IMMOLATION:
+    display-name: "Immolation"
+    lore-format: "<gradient:#ff6b35:#ff8c42>✦ Immolation %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:KILLAURA:
+    display-name: "Kill Aura"
+    lore-format: "<gradient:#ff3366:#ff6b9d>✦ Kill Aura %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:BLACKSMITH:
+    display-name: "Blacksmith"
+    lore-format: "<gradient:#b8b8b8:#d8d8d8>✦ Blacksmith %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:IMMORTAL:
+    display-name: "Immortal"
+    lore-format: "<gradient:#ffd700:#ffed4e>✦ Immortal %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:UNBREAKABLE:
+    display-name: "Unbreakable"
+    lore-format: "<gradient:#d4af37:#f4d03f>✦ Unbreakable %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:DISARMOR:
+    display-name: "Disarmor"
+    lore-format: "<gradient:#ff3366:#ff6b9d>✦ Disarmor %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:STRIKER:
+    display-name: "Striker"
+    lore-format: "<gradient:#f09819:#edde5d>✦ Striker %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:SNIPER:
+    display-name: "Sniper"
+    lore-format: "<gradient:#f09819:#edde5d>✦ Sniper %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:DEADSHOT:
+    display-name: "Deadshot"
+    lore-format: "<gradient:#f09819:#edde5d>✦ Deadshot %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:SOULBOUND:
+    display-name: "Soulbound"
+    lore-format: "<gradient:#9d50bb:#6e48aa>✦ Soulbound %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:NEUTRALIZE:
+    display-name: "Neutralize"
+    lore-format: "<gradient:#667eea:#764ba2>✦ Neutralize %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:DISARM:
+    display-name: "Disarm"
+    lore-format: "<gradient:#ff3366:#ff6b9d>✦ Disarm %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:PHOENIX:
+    display-name: "Phoenix"
+    lore-format: "<gradient:#ff6b35:#ff8c42>✦ Phoenix %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:SCARE:
+    display-name: "Scare"
+    lore-format: "<gradient:#8b0000:#a00000>✦ Scare %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:STRIFE:
+    display-name: "Strife"
+    lore-format: "<gradient:#00c9ff:#92fe9d>✦ Strife %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:SPARK:
+    display-name: "Spark"
+    lore-format: "<gradient:#9d50bb:#6e48aa>✦ Spark %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:BLUNTFORCE:
+    display-name: "Blunt Force"
+    lore-format: "<gradient:#ff3366:#ff6b9d>✦ Blunt Force %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:AEGIS:
+    display-name: "Aegis"
+    lore-format: "<gradient:#00ff88:#00ffaa>✦ Aegis %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:PLUMMET:
+    display-name: "Plummet"
+    lore-format: "<gradient:#ff3366:#ff6b9d>✦ Plummet %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:SUSPEND:
+    display-name: "Suspend"
+    lore-format: "<gradient:#4a4a4a:#6a6a6a>✦ Suspend %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:NIGHTOWL:
+    display-name: "Night Owl"
+    lore-format: "<gradient:#4a4a4a:#6a6a6a>✦ Night Owl %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:NIGHTWALKER:
+    display-name: "Nightwalker"
+    lore-format: "<gradient:#4a4a4a:#6a6a6a>✦ Nightwalker %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:LAUNCH:
+    display-name: "Launch"
+    lore-format: "<gradient:#00c9ff:#92fe9d>✦ Launch %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:SLINGSHOT:
+    display-name: "Slingshot"
+    lore-format: "<gradient:#00c9ff:#92fe9d>✦ Slingshot %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:NULIFY:
+    display-name: "Nulify"
+    lore-format: "<gradient:#4a4a4a:#6a6a6a>✦ Nulify %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:RUSH:
+    display-name: "Rush"
+    lore-format: "<gradient:#00ff88:#00ffaa>✦ Rush %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:DIPLOID:
+    display-name: "Diploid"
+    lore-format: "<gradient:#00ff88:#00ffaa>✦ Diploid %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:MULTIPLICATION:
+    display-name: "Multiplication"
+    lore-format: "<gradient:#ffd700:#ffed4e>✦ Multiplication %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:FUDDLE:
+    display-name: "Fuddle"
+    lore-format: "<gradient:#8b0000:#a00000>✦ Fuddle %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:SPIRITMASTER:
+    display-name: "Spiritmaster"
+    lore-format: "<gradient:#9d50bb:#6e48aa>✦ Spiritmaster %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:AXEOFSPIRITS:
+    display-name: "Axe of Spirits"
+    lore-format: "<gradient:#9d50bb:#6e48aa>✦ Axe of Spirits %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:SOULMINER:
+    display-name: "Soulminer"
+    lore-format: "<gradient:#9d50bb:#6e48aa>✦ Soulminer %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:SOULGRIND:
+    display-name: "Soulgrind"
+    lore-format: "<gradient:#9d50bb:#6e48aa>✦ Soulgrind %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:DERANGED:
+    display-name: "Deranged"
+    lore-format: "<gradient:#9d50bb:#6e48aa>✦ Deranged %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:MAGNET:
+    display-name: "Magnet"
+    lore-format: "<gradient:#667eea:#764ba2>✦ Magnet %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:CALLALLIES:
+    display-name: "Call to Allies"
+    lore-format: "<gradient:#c0c0c0:#e0e0e0>✦ Call to Allies %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:FEED:
+    display-name: "Feed"
+    lore-format: "<gradient:#00ff88:#00ffaa>✦ Feed %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  AE:VIRUS:
+    display-name: "Virus"
+    lore-format: "<gradient:#7bff00:#a8ff42>✦ Virus %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "ae enchant {effect_lower} {level}"
+  
+  # BeaconPower (BP) - Efeitos de Poção Completos
+  BP:POTION_EFFECT:REGENERATION:
+    display-name: "Regeneração de Beacon"
+    lore-format: "<gradient:#90ee90:#b0ffb0>✦ Regeneração de Beacon %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "bp giveeffect {player} {part1_lower} {part2_lower} {level}"
+  BP:POTION_EFFECT:SPEED:
+    display-name: "Velocidade de Beacon"
+    lore-format: "<gradient:#00ff88:#00ffaa>✦ Velocidade de Beacon %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "bp giveeffect {player} {part1_lower} {part2_lower} {level}"
+  BP:POTION_EFFECT:SLOWNESS:
+    display-name: "Lentidão de Beacon"
+    lore-format: "<gradient:#4a4a4a:#6a6a6a>✦ Lentidão de Beacon %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "bp giveeffect {player} {part1_lower} {part2_lower} {level}"
+  BP:POTION_EFFECT:HASTE:
+    display-name: "Pressa de Beacon"
+    lore-format: "<gradient:#d4af37:#f4d03f>✦ Pressa de Beacon %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "bp giveeffect {player} {part1_lower} {part2_lower} {level}"
+  BP:POTION_EFFECT:MINING_FATIGUE:
+    display-name: "Fadiga de Mineração de Beacon"
+    lore-format: "<gradient:#4a4a4a:#6a6a6a>✦ Fadiga de Mineração de Beacon %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "bp giveeffect {player} {part1_lower} {part2_lower} {level}"
+  BP:POTION_EFFECT:STRENGTH:
+    display-name: "Força de Beacon"
+    lore-format: "<gradient:#ff3366:#ff6b9d>✦ Força de Beacon %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "bp giveeffect {player} {part1_lower} {part2_lower} {level}"
+  BP:POTION_EFFECT:INSTANT_HEALTH:
+    display-name: "Cura Instantânea de Beacon"
+    lore-format: "<gradient:#ff4d4d:#ff9f1a>✦ Cura Instantânea de Beacon %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "bp giveeffect {player} {part1_lower} {part2_lower} {level}"
+  BP:POTION_EFFECT:INSTANT_DAMAGE:
+    display-name: "Dano Instantâneo de Beacon"
+    lore-format: "<gradient:#8b0000:#a00000>✦ Dano Instantâneo de Beacon %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "bp giveeffect {player} {part1_lower} {part2_lower} {level}"
+  BP:POTION_EFFECT:JUMP_BOOST:
+    display-name: "Salto de Beacon"
+    lore-format: "<gradient:#00ff88:#00ffaa>✦ Salto de Beacon %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "bp giveeffect {player} {part1_lower} {part2_lower} {level}"
+  BP:POTION_EFFECT:NAUSEA:
+    display-name: "Náusea de Beacon"
+    lore-format: "<gradient:#8b0000:#a00000>✦ Náusea de Beacon %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "bp giveeffect {player} {part1_lower} {part2_lower} {level}"
+  BP:POTION_EFFECT:RESISTANCE:
+    display-name: "Resistência de Beacon"
+    lore-format: "<gradient:#c0c0c0:#e0e0e0>✦ Resistência de Beacon %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "bp giveeffect {player} {part1_lower} {part2_lower} {level}"
+  BP:POTION_EFFECT:FIRE_RESISTANCE:
+    display-name: "Resistência ao Fogo de Beacon"
+    lore-format: "<gradient:#ff6b35:#ff8c42>✦ Resistência ao Fogo de Beacon %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "bp giveeffect {player} {part1_lower} {part2_lower} {level}"
+  BP:POTION_EFFECT:WATER_BREATHING:
+    display-name: "Respiração Aquática de Beacon"
+    lore-format: "<gradient:#00c9ff:#92fe9d>✦ Respiração Aquática de Beacon %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "bp giveeffect {player} {part1_lower} {part2_lower} {level}"
+  BP:POTION_EFFECT:INVISIBILITY:
+    display-name: "Invisibilidade de Beacon"
+    lore-format: "<gradient:#667eea:#764ba2>✦ Invisibilidade de Beacon %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "bp giveeffect {player} {part1_lower} {part2_lower} {level}"
+  BP:POTION_EFFECT:BLINDNESS:
+    display-name: "Cegueira de Beacon"
+    lore-format: "<gradient:#4a4a4a:#6a6a6a>✦ Cegueira de Beacon %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "bp giveeffect {player} {part1_lower} {part2_lower} {level}"
+  BP:POTION_EFFECT:NIGHT_VISION:
+    display-name: "Visão Noturna de Beacon"
+    lore-format: "<gradient:#ffeaa7:#fdcb6e>✦ Visão Noturna de Beacon %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "bp giveeffect {player} {part1_lower} {part2_lower} {level}"
+  BP:POTION_EFFECT:HUNGER:
+    display-name: "Fome de Beacon"
+    lore-format: "<gradient:#8b0000:#a00000>✦ Fome de Beacon %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "bp giveeffect {player} {part1_lower} {part2_lower} {level}"
+  BP:POTION_EFFECT:WEAKNESS:
+    display-name: "Fraqueza de Beacon"
+    lore-format: "<gradient:#4a4a4a:#6a6a6a>✦ Fraqueza de Beacon %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "bp giveeffect {player} {part1_lower} {part2_lower} {level}"
+  BP:POTION_EFFECT:POISON:
+    display-name: "Veneno de Beacon"
+    lore-format: "<gradient:#7bff00:#a8ff42>✦ Veneno de Beacon %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "bp giveeffect {player} {part1_lower} {part2_lower} {level}"
+  BP:POTION_EFFECT:WITHER:
+    display-name: "Wither de Beacon"
+    lore-format: "<gradient:#4a4a4a:#6a6a6a>✦ Wither de Beacon %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "bp giveeffect {player} {part1_lower} {part2_lower} {level}"
+  BP:POTION_EFFECT:HEALTH_BOOST:
+    display-name: "Aumento de Vida de Beacon"
+    lore-format: "<gradient:#ff4d4d:#ff9f1a>✦ Aumento de Vida de Beacon %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "bp giveeffect {player} {part1_lower} {part2_lower} {level}"
+  BP:POTION_EFFECT:ABSORPTION:
+    display-name: "Absorção de Beacon"
+    lore-format: "<gradient:#ffd700:#ffed4e>✦ Absorção de Beacon %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "bp giveeffect {player} {part1_lower} {part2_lower} {level}"
+  BP:POTION_EFFECT:SATURATION:
+    display-name: "Saturação de Beacon"
+    lore-format: "<gradient:#00ff88:#00ffaa>✦ Saturação de Beacon %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "bp giveeffect {player} {part1_lower} {part2_lower} {level}"
+  BP:POTION_EFFECT:GLOWING:
+    display-name: "Brilho de Beacon"
+    lore-format: "<gradient:#ffd700:#ffed4e>✦ Brilho de Beacon %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "bp giveeffect {player} {part1_lower} {part2_lower} {level}"
+  BP:POTION_EFFECT:LEVITATION:
+    display-name: "Levitação de Beacon"
+    lore-format: "<gradient:#00c9ff:#92fe9d>✦ Levitação de Beacon %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "bp giveeffect {player} {part1_lower} {part2_lower} {level}"
+  BP:POTION_EFFECT:LUCK:
+    display-name: "Sorte de Beacon"
+    lore-format: "<gradient:#00ff88:#00ffaa>✦ Sorte de Beacon %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "bp giveeffect {player} {part1_lower} {part2_lower} {level}"
+  BP:POTION_EFFECT:UNLUCK:
+    display-name: "Azar de Beacon"
+    lore-format: "<gradient:#8b0000:#a00000>✦ Azar de Beacon %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "bp giveeffect {player} {part1_lower} {part2_lower} {level}"
+  BP:POTION_EFFECT:SLOW_FALLING:
+    display-name: "Queda Lenta de Beacon"
+    lore-format: "<gradient:#e8e8e8:#ffffff>✦ Queda Lenta de Beacon %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "bp giveeffect {player} {part1_lower} {part2_lower} {level}"
+  BP:POTION_EFFECT:CONDUIT_POWER:
+    display-name: "Poder de Conduto de Beacon"
+    lore-format: "<gradient:#00c9ff:#92fe9d>✦ Poder de Conduto de Beacon %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "bp giveeffect {player} {part1_lower} {part2_lower} {level}"
+  BP:POTION_EFFECT:DOLPHINS_GRACE:
+    display-name: "Graça do Golfinho de Beacon"
+    lore-format: "<gradient:#00c9ff:#92fe9d>✦ Graça do Golfinho de Beacon %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "bp giveeffect {player} {part1_lower} {part2_lower} {level}"
+  BP:POTION_EFFECT:BAD_OMEN:
+    display-name: "Mau Presságio de Beacon"
+    lore-format: "<gradient:#8b0000:#a00000>✦ Mau Presságio de Beacon %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "bp giveeffect {player} {part1_lower} {part2_lower} {level}"
+  BP:POTION_EFFECT:HERO_OF_THE_VILLAGE:
+    display-name: "Herói da Vila de Beacon"
+    lore-format: "<gradient:#ffd700:#ffed4e>✦ Herói da Vila de Beacon %roman_level%</gradient>"
+    default-level: 1
+    apply-command: "bp giveeffect {player} {part1_lower} {part2_lower} {level}"

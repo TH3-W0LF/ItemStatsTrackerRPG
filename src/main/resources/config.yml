@@ -1,0 +1,426 @@
+# Configurações gerais do plugin ItemStatsTracker
+
+# Configurações de reincarnação de itens
+reincarnado:
+  # O bônus de drop por nível de reincarnação (multiplicador). 0.005 = 0.5% por nível.
+  # Exemplo: nível 1000 = 500% de bônus de drop (5x mais drops)
+  bonus-drop-percentage-per-level: 0.005
+  # O bônus de experiência por nível de reincarnação (multiplicador). 0.01 = 1% por nível.
+  # Exemplo: nível 1000 = 1000% de bônus de XP (11x mais XP)
+  bonus-exp-percentage-per-level: 0.01
+  # O nível máximo de reincarnação que um item pode alcançar.
+  max-level: 100
+  
+  rename:
+    enabled: true
+    # Se true, usa um comando externo (ex: itemeditar) para renomear
+    use-command: true
+    # Placeholders: {player}, {new_name}
+    command-template: "itemeditar renomear {player} {new_name}"
+    # Template do nome (MiniMessage), usado para montar {new_name}
+    name-template: "<gray><base_name> <yellow>L<level>"
+
+# Flags para exibição de seções na lore
+# Você pode desligar qualquer seção definindo como false
+# Ordem será tratada futuramente por 'lore.sections-order'
+display-tracked-stats:
+  enabled: true
+display-ascension:
+  enabled: true
+display-enchant-progress:
+  enabled: true
+display-resistance:
+  enabled: true
+display-attack:
+  enabled: true
+display-tool:
+  enabled: true
+display-owner:
+  enabled: true
+
+# Ocultar atributos do Minecraft (armadura, resistência, etc.) na lore
+# Quando ativado, os atributos padrão do Minecraft (como "+6 Armadura", "+3 Resistência da armadura")
+# não serão exibidos na lore do item, deixando apenas as informações do plugin visíveis
+hide-attributes:
+  enabled: true
+
+# Configuração de formatação de números na lore
+# Define como números grandes serão exibidos
+number-format:
+  # Se true, usa formato compacto (1B) para números >= 1 bilhão
+  # Se false, usa formato longo com separadores (1.000.000.000)
+  use-compact-for-billions: false
+
+# Configuração de armazenamento de dados
+# Define onde e como os dados dos itens serão salvos
+storage:
+  # Tipo de armazenamento: PDC (PersistentDataContainer - dados no NBT dos itens) ou MYSQL (futuro)
+  # Atualmente apenas PDC está implementado - dados ficam salvos diretamente nos itens via NBT
+  # MySQL será implementado no futuro como opção adicional
+  type: PDC
+  # ATUALMENTE: Os dados são salvos no PersistentDataContainer (PDC) do Bukkit/Paper
+  # Isso significa que todas as estatísticas, níveis de reincarnação, bônus, etc.
+  # ficam armazenados diretamente no NBT (dados binários) do próprio item.
+  # 
+  # VANTAGENS do PDC:
+  # - Dados sempre acompanham o item (não se perdem ao mover entre servidores)
+  # - Não requer banco de dados externo
+  # - Muito rápido (acesso direto ao NBT)
+  # 
+  # FUTURO MySQL:
+  # - Quando implementado, permitirá backup externo dos dados
+  # - Facilita migração entre servidores
+  # - Permite consultas e análises de dados
+
+# Filtro de Rastreamento - Define quais itens devem ser rastreados pelo plugin
+# Se habilitado, apenas itens que possuem as tags NBT/PDC especificadas serão rastreados
+# Se desabilitado, todos os itens serão rastreados (comportamento padrão)
+tracking-filter:
+  enable: false
+  # Lista de chaves NBT/PDC que o item deve possuir para ser rastreado
+  # Se o item tiver QUALQUER uma dessas chaves, será rastreado
+  # Exemplo: ItemsAdder usa "itemsadder:id" no PDC
+  required-tags:
+    - "itemsadder:id"
+    # - "outra_chave:id"  # Descomente para adicionar mais tags
+
+# Sistema de limitação de encantamentos por tipo de item e material
+# Define quantos encantamentos de cada tipo (Vanilla, AE, BP) cada item pode ter
+enchantment-limits:
+  enabled: true
+  
+  # Limites por categoria de item (prioridade maior que limites por material)
+  # Se um item se encaixa em uma categoria, os limites da categoria serão aplicados
+  # Categorias: HELMET, CHESTPLATE, LEGGINGS, BOOTS, SWORDS, BOWS, TRIDENT, MACE, PICKAXES, AXES, SHOVELS, HOES
+  category-limits:
+    HELMET:
+      vanilla: 5
+      ae: 4
+      bp: 2
+    CHESTPLATE:
+      vanilla: 5
+      ae: 4
+      bp: 2
+    LEGGINGS:
+      vanilla: 5
+      ae: 4
+      bp: 2
+    BOOTS:
+      vanilla: 5
+      ae: 4
+      bp: 2
+    SWORDS:
+      vanilla: 5
+      ae: 4
+      bp: 2
+    BOWS:
+      vanilla: 5
+      ae: 4
+      bp: 2
+    TRIDENT:
+      vanilla: 5
+      ae: 4
+      bp: 2
+    MACE:
+      vanilla: 5
+      ae: 4
+      bp: 2
+    PICKAXES:
+      vanilla: 5
+      ae: 4
+      bp: 2
+    AXES:
+      vanilla: 5
+      ae: 4
+      bp: 2
+    SHOVELS:
+      vanilla: 5
+      ae: 4
+      bp: 2
+    HOES:
+      vanilla: 5
+      ae: 4
+      bp: 2
+  
+  # Limites por material e tipo de item (prioridade menor que categoria)
+  # Formato: MATERIAL_ITEMTYPE: { vanilla: X, ae: Y, bp: Z }
+  # Se não houver limite na categoria, será verificado o limite do material específico
+  limits:
+    # Espadas de Diamante
+    DIAMOND_SWORD:
+      vanilla: 4
+      ae: 3
+      bp: 1
+    # Espadas de Netherite
+    NETHERITE_SWORD:
+      vanilla: 5
+      ae: 4
+      bp: 2
+    # Picaretas de Diamante
+    DIAMOND_PICKAXE:
+      vanilla: 4
+      ae: 3
+      bp: 1
+    # Picaretas de Netherite
+    NETHERITE_PICKAXE:
+      vanilla: 5
+      ae: 4
+      bp: 2
+    # Machados de Diamante
+    DIAMOND_AXE:
+      vanilla: 4
+      ae: 3
+      bp: 1
+    # Machados de Netherite
+    NETHERITE_AXE:
+      vanilla: 5
+      ae: 4
+      bp: 2
+    # Armaduras de Diamante
+    DIAMOND_HELMET:
+      vanilla: 4
+      ae: 3
+      bp: 1
+    DIAMOND_CHESTPLATE:
+      vanilla: 4
+      ae: 3
+      bp: 1
+    DIAMOND_LEGGINGS:
+      vanilla: 4
+      ae: 3
+      bp: 1
+    DIAMOND_BOOTS:
+      vanilla: 4
+      ae: 3
+      bp: 1
+    # Armaduras de Netherite
+    NETHERITE_HELMET:
+      vanilla: 5
+      ae: 4
+      bp: 2
+    NETHERITE_CHESTPLATE:
+      vanilla: 5
+      ae: 4
+      bp: 2
+    NETHERITE_LEGGINGS:
+      vanilla: 5
+      ae: 4
+      bp: 2
+    NETHERITE_BOOTS:
+      vanilla: 5
+      ae: 4
+      bp: 2
+  # Mensagens de erro
+  messages:
+    limit-reached: "<red>Este item já atingiu o limite de encantamentos <type> (<current>/<max>).</red>"
+    limit-reached-vanilla: "<red>Este item já atingiu o limite de encantamentos Vanilla (<current>/<max>).</red>"
+    limit-reached-ae: "<red>Este item já atingiu o limite de encantamentos AdvancedEnchantments (<current>/<max>).</red>"
+    limit-reached-bp: "<red>Este item já atingiu o limite de encantamentos BeaconPower (<current>/<max>).</red>"
+
+# Configuração dos conjuntos de armadura e seus bônus
+armor-sets:
+  diamond_set:
+    display-name: "Conjunto de Diamante"
+    pieces:
+      HELMET: DIAMOND_HELMET
+      CHESTPLATE: DIAMOND_CHESTPLATE
+      LEGGINGS: DIAMOND_LEGGINGS
+      BOOTS: DIAMOND_BOOTS
+    set-bonus:
+      3_pieces: # Bônus com 3 peças equipadas
+        attributes:
+          GENERIC_KNOCKBACK_RESISTANCE: 
+            value: 0.10
+            display-name: "<yellow>✷ Defesa Estável (+10% Resistência a Repulsão)</yellow>"
+      4_pieces: # Bônus com 4 peças equipadas
+        attributes:
+          GENERIC_MOVEMENT_SPEED: 
+            value: 0.02
+            display-name: "<green>✦ Conjunto Completo: +20% Velocidade</green>"
+  netherite_set:
+    display-name: "Conjunto de Netherite"
+    pieces:
+      HELMET: NETHERITE_HELMET
+      CHESTPLATE: NETHERITE_CHESTPLATE
+      LEGGINGS: NETHERITE_LEGGINGS
+      BOOTS: NETHERITE_BOOTS
+    set-bonus:
+      3_pieces: # Bônus com 3 peças equipadas
+        attributes:
+          GENERIC_ATTACK_DAMAGE: 
+            value: 1.0
+            display-name: "<gold>⚔ Força da Netherite: +1 Dano</gold>"
+      4_pieces: # Bônus com 4 peças equipadas
+        attributes:
+          GENERIC_MAX_HEALTH: 
+            value: 4.0
+            display-name: "<red>❤ Vitalidade Completa: +2 Corações</red>"
+        potion_effects:
+          NIGHT_VISION:
+            amplifier: 0 # Nível I (amplificador 0)
+            display-name: "<aqua>☽ Visão Noturna</aqua>"
+
+# Configurações para o upgrade de encantamentos dinâmicos
+# Defina como os encantamentos podem ser melhorados (upados) através de estatísticas.
+# Os critérios podem ser específicos por categoria de item ou usar o padrão (default).
+enchantment-upgrades:
+  default:
+    UNBREAKING:
+      max-level: 5
+      criteria:
+        - stat-type: "BLOCKS_BROKEN"
+          required-value-per-level: 5000
+          display-name-key: "stats.blocks_broken"
+  SWORDS:
+    SHARPNESS:
+      max-level: 5
+      criteria:
+        - stat-type: "DAMAGE_DEALT_MOB"
+          required-value-per-level: 300
+          display-name-key: "stats.damage_dealt_mob"
+        - stat-type: "MOB_KILLS"
+          required-value-per-level: 40
+          display-name-key: "stats.mob_kills"
+    SMITE:
+      max-level: 5
+      criteria:
+        - stat-type: "DAMAGE_DEALT_UNDEAD"
+          required-value-per-level: 400
+          display-name-key: "stats.damage_dealt_undead"
+  PICKAXES:
+    EFFICIENCY:
+      max-level: 5
+      criteria:
+        - stat-type: "ORES_BROKEN"
+          required-value-per-level: 200
+          display-name-key: "stats.ores_broken"
+  AXES:
+    EFFICIENCY:
+      max-level: 5
+      criteria:
+        - stat-type: "WOOD_CHOPPED"
+          required-value-per-level: 200
+          display-name-key: "stats.wood_chopped"
+  SHOVELS:
+    EFFICIENCY:
+      max-level: 5
+      criteria:
+        - stat-type: "BLOCKS_BROKEN"
+          required-value-per-level: 300
+          display-name-key: "stats.blocks_broken"
+  HOES:
+    EFFICIENCY:
+      max-level: 5
+      criteria:
+        - stat-type: "FARM_HARVESTED"
+          required-value-per-level: 100
+          display-name-key: "stats.farm_harvested"
+  BOWS:
+    POWER:
+      max-level: 5
+      criteria:
+        - stat-type: "BOW_ARROWS_SHOT"
+          required-value-per-level: 500
+          display-name-key: "stats.bow_arrows_shot"
+    UNBREAKING:
+      max-level: 3
+      criteria:
+        - stat-type: "BOW_ARROWS_SHOT"
+          required-value-per-level: 1000
+          display-name-key: "stats.bow_arrows_shot"
+  TRIDENT:
+    IMPALING:
+      max-level: 5
+      criteria:
+        - stat-type: "TRIDENT_DAMAGE"
+          required-value-per-level: 500
+          display-name-key: "stats.trident_damage"
+    UNBREAKING:
+      max-level: 3
+      criteria:
+        - stat-type: "TRIDENT_THROWN"
+          required-value-per-level: 500
+          display-name-key: "stats.trident_thrown"
+  CHESTPLATE:
+    # Para Elytra (elitros)
+    UNBREAKING:
+      max-level: 3
+      criteria:
+        - stat-type: "ELYTRA_FLIGHT_TIME"
+          required-value-per-level: 300
+          display-name-key: "stats.elytra_flight_time"
+    MENDING:
+      max-level: 1
+      criteria:
+        - stat-type: "ELYTRA_FLIGHT_TIME"
+          required-value-per-level: 1000
+          display-name-key: "stats.elytra_flight_time"
+  SHIELD:
+    UNBREAKING:
+      max-level: 3
+      criteria:
+        - stat-type: "DAMAGE_BLOCKED"
+          required-value-per-level: 500
+          display-name-key: "stats.damage_blocked"
+    MENDING:
+      max-level: 1
+      criteria:
+        - stat-type: "DAMAGE_BLOCKED"
+          required-value-per-level: 2000
+          display-name-key: "stats.damage_blocked"
+  ARMOR_PIECES:
+    PROTECTION:
+      max-level: 4
+      criteria:
+        - stat-type: "DAMAGE_TAKEN_TOTAL"
+          required-value-per-level: 4000
+          display-name-key: "stats.damage_taken_total"
+
+# Configuração de Itens Temporizados
+# Sistema que permite criar itens que expiram após um determinado tempo
+timed-items:
+  # Habilitar/desabilitar o sistema de itens temporizados
+  enabled: true
+  
+  # Configuração de banco de dados para auditoria dos itens temporizados
+  database:
+    # Tipo de banco: SQLITE ou MYSQL
+    type: SQLITE
+    # Arquivo SQLite (apenas se type for SQLITE)
+    sqlite-file: timed_items.db
+    # Configuração MySQL (apenas se type for MYSQL)
+    mysql:
+      host: localhost
+      port: 3306
+      database: timeditems
+      user: root
+      password: password
+  
+  # Configuração de agendamento/tasks
+  scheduling:
+    # Intervalo em ticks para atualizar inventários e itens droppados (20 ticks = 1 segundo)
+    update_interval_ticks: 20
+    # Intervalo em segundos para escanear containers carregados (baús, fornos, etc)
+    # Valores maiores reduzem lag mas podem deixar itens em containers não atualizados por mais tempo
+    container_scan_interval_seconds: 60
+  
+  # Mensagens do sistema
+  messages:
+    # Mensagem exibida quando um jogador recebe um item temporizado
+    # Placeholders: %seconds% - tempo em segundos
+    give_msg: "§aVocê recebeu um item temporizado por %seconds% segundos."
+    # Mensagem exibida quando um item expira
+    expired_msg: "§cUm item expirou e foi removido."
+  
+  # Configuração da lore
+  lore:
+    # Prefixo da linha de tempo na lore
+    prefix: "§7[Expira em] "
+    # Posição na lore (-1 = adicionar no final)
+    position: -1
+  
+  # Limites do sistema
+  limits:
+    # Duração máxima permitida para um item temporizado (em segundos)
+    # Padrão: 86400 (1 dia)
+    max_duration_seconds: 86400

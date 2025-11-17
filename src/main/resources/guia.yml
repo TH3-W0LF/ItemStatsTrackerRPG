@@ -1,0 +1,153 @@
+# Este arquivo é um guia de referência para os administradores do servidor.
+# Ele NÃO é lido pelo plugin. As configurações reais devem ser feitas em
+# config.yml, ascension.yml, messages.yml, etc.
+
+# --- GUIA DE ATRIBUTOS PARA BÔNUS DE CONJUNTO (armor-sets) ---
+# Você pode usar qualquer atributo genérico do Minecraft.
+# A lista abaixo contém os mais comuns e úteis.
+# A estrutura no config.yml deve ser:
+#
+# attributes:
+#   NOME_DO_ATRIBUTO:
+#     value: VALOR
+#     display-name: "Nome que aparece no chat"
+
+ATRIBUTOS_DISPONIVEIS:
+  GENERIC_MAX_HEALTH:
+    descricao: "Aumenta a vida máxima do jogador."
+    valor: "O valor é em 'meios corações'. Um valor de 2.0 adiciona 1 coração completo."
+    exemplo: "value: 4.0 (Adiciona 2 corações extras)"
+
+  GENERIC_MOVEMENT_SPEED:
+    descricao: "Aumenta a velocidade de movimento do jogador."
+    valor: "A velocidade base do jogador é 0.1. O valor aqui é somado a essa base. Um valor de 0.02 aumenta a velocidade em 20%."
+    exemplo: "value: 0.02 (Aumenta a velocidade em 20%)"
+    aviso: "Valores altos como 0.1 ou 1.0 deixarão o jogador extremamente rápido e incontrolável."
+
+  GENERIC_ATTACK_DAMAGE:
+    descricao: "Aumenta o dano de ataque corpo a corpo do jogador."
+    valor: "O valor é o dano extra adicionado a cada ataque. Um valor de 1.0 adiciona meio coração de dano."
+    exemplo: "value: 1.0 (Adiciona meio coração de dano)"
+
+  GENERIC_ATTACK_SPEED:
+    descricao: "Aumenta a velocidade de ataque do jogador."
+    valor: "A velocidade base é 4.0. Um valor de 0.5 aqui aumenta a velocidade de ataque em 12.5%."
+    exemplo: "value: 0.5 (Aumenta a velocidade de ataque em 12.5%)"
+
+  GENERIC_ARMOR:
+    descricao: "Aumenta os pontos de armadura do jogador."
+    valor: "Cada ponto de armadura é uma 'meia placa' na barra de armadura."
+    exemplo: "value: 2.0 (Adiciona 1 placa de armadura completa)"
+
+  GENERIC_ARMOR_TOUGHNESS:
+    descricao: "Aumenta a tenacidade da armadura, que reduz o dano de ataques fortes."
+    valor: "Armadura de diamante tem 2.0 de tenacidade por peça. Este valor é somado."
+    exemplo: "value: 1.0"
+
+  GENERIC_KNOCKBACK_RESISTANCE:
+    descricao: "Aumenta a resistência do jogador a ser empurrado por ataques."
+    valor: "O valor é uma porcentagem. 0.1 = 10% de resistência, 1.0 = 100% de resistência (imune a knockback)."
+    exemplo: "value: 0.10 (10% de resistência a repulsão)"
+
+# --- GUIA DE EFEITOS DE POÇÃO PARA BÔNUS DE CONJUNTO ---
+# Você pode usar qualquer tipo de efeito de poção do Minecraft.
+# A estrutura no config.yml deve ser:
+#
+# potion_effects:
+#   NOME_DO_EFEITO:
+#     amplifier: NIVEL
+#     display-name: "Nome que aparece no chat"
+
+EFEITOS_DE_POCAO_COMUNS:
+  - SPEED (Velocidade)
+  - STRENGTH (Força, use GENERIC_ATTACK_DAMAGE em vez disso para um bônus constante)
+  - JUMP (Super Pulo)
+  - REGENERATION (Regeneração)
+  - RESISTANCE (Resistência a Dano)
+  - FIRE_RESISTANCE (Resistência a Fogo)
+  - WATER_BREATHING (Respiração Aquática)
+  - INVISIBILITY (Invisibilidade)
+  - NIGHT_VISION (Visão Noturna)
+  - HEALTH_BOOST (Adiciona corações temporários, use GENERIC_MAX_HEALTH para corações permanentes)
+  - LUCK (Sorte)
+  - SLOW_FALLING (Queda Lenta)
+  - CONDUIT_POWER (Poder do Canal)
+  - DOLPHINS_GRACE (Graça do Golfinho)
+  - BAD_OMEN (Mau Presságio)
+  - HERO_OF_THE_VILLAGE (Herói da Vila)
+  
+NOTAS_SOBRE_NIVEIS:
+  "O 'amplifier' (amplificador) começa em 0. Então, para um efeito de nível I (como em uma poção normal), use amplifier: 0. Para um efeito de nível II, use amplifier: 1, e assim por diante."
+
+# --- GUIA DE CORES TEMÁTICAS PARA RESISTÊNCIAS ---
+# As cores das resistências seguem padrões temáticos baseados no tipo de dano.
+# O sistema automaticamente aplica cores baseadas no nome do tipo de dano.
+# 
+# Padrões de Cores:
+CORES_TEMATICAS_RESISTENCIAS:
+  FOGO_E_LAVA:
+    tipos: ["FIRE", "LAVA", "BURN", "HOT"]
+    cor: "<gradient:#ff4d4d:#ff8c42>"
+    descricao: "Vermelho e Laranja - Representa calor e fogo"
+    exemplo: "Resistência a Fire, Lava, Burn, Hot"
+  
+  AGUA_E_GELO:
+    tipos: ["WATER", "DROWN", "ICE", "FREEZE", "FROST"]
+    cor: "<gradient:#4facfe:#00f2fe>"
+    descricao: "Azul claro e Azul escuro - Representa água e gelo"
+    exemplo: "Resistência a Water, Drown, Ice, Freeze, Frost"
+  
+  EXPLOSAO:
+    tipos: ["EXPLOSION", "EXPLODE", "BLAST"]
+    cor: "<gradient:#9d50bb:#6e48aa>"
+    descricao: "Roxo - Representa explosões e energia destrutiva"
+    exemplo: "Resistência a Explosion, Blast"
+  
+  QUEDA:
+    tipos: ["FALL", "VOID"]
+    cor: "<gradient:#667eea:#764ba2>"
+    descricao: "Roxo azulado - Representa queda e vazio"
+    exemplo: "Resistência a Fall, Void"
+  
+  PROJETEIS:
+    tipos: ["PROJECTILE", "ARROW"]
+    cor: "<gradient:#f09819:#edde5d>"
+    descricao: "Laranja e Amarelo - Representa flechas e projéteis"
+    exemplo: "Resistência a Projectile, Arrow"
+  
+  MAGIA:
+    tipos: ["MAGIC", "SPELL", "POISON", "WITHER"]
+    cor: "<gradient:#7bff00:#a8ff42>"
+    descricao: "Verde tóxico - Representa magia e veneno"
+    exemplo: "Resistência a Magic, Poison, Wither"
+  
+  ATAQUES_ENTIDADES:
+    tipos: ["ENTITY", "ATTACK", "CONTACT"]
+    cor: "<gradient:#ff6b6b:#ff8787>"
+    descricao: "Vermelho claro - Representa ataques físicos"
+    exemplo: "Resistência a Entity attack, Entity explosion"
+  
+  SUFOCACAO:
+    tipos: ["SUFFOCATION", "CRAMMING"]
+    cor: "<gradient:#4a4a4a:#6a6a6a>"
+    descricao: "Cinza escuro - Representa sufocação"
+    exemplo: "Resistência a Suffocation, Cramming"
+  
+  RAIO:
+    tipos: ["LIGHTNING", "THUNDER"]
+    cor: "<gradient:#ffd700:#ffed4e>"
+    descricao: "Dourado - Representa raios e trovões"
+    exemplo: "Resistência a Lightning, Thunder"
+  
+  PADRAO:
+    tipos: ["Qualquer outro tipo não listado"]
+    cor: "<gradient:#c0c0c0:#e0e0e0>"
+    descricao: "Cinza elegante - Cor padrão para tipos desconhecidos"
+    exemplo: "Resistência a tipos não mapeados"
+
+NOTAS_SOBRE_CORES:
+  - "As cores são aplicadas automaticamente baseadas no nome do tipo de dano"
+  - "O sistema verifica se o nome contém palavras-chave (case-insensitive)"
+  - "Se múltiplas palavras-chave corresponderem, a primeira correspondência é usada"
+  - "A porcentagem de resistência sempre aparece em verde: <green>+X.X%</green>"
+  - "O formato completo é: <gradient:cor1:cor2>Resistência a Tipo: <green>+X.X%</green></gradient>"

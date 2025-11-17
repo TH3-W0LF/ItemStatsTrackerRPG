@@ -1,0 +1,31 @@
+main: com.drakkar.itemstatstracker.ItemStatsTracker
+name: ItemStatsTracker
+version: 3.7
+api-version: 1.20
+authors:
+  - MestreBR
+contributors:
+  - ShelbyKING_
+description: Give your items a soul, tracks usage statistics and dynamically updates the item's lore, making it evolve alongside the player.
+softdepend:
+  - PlaceholderAPI
+commands:
+  ist:
+    description: Gerencia as estatísticas e efeitos dos itens.
+    usage: /ist <subcomando>
+    permission: itemstatstracker.use
+    default: op
+    permission-message: Você não tem permissão para usar este comando.
+  acessorios:
+    description: Abre o menu de acessórios.
+    usage: /acessorios
+    aliases: [acc, equipamentos]
+    permission: itemstatstracker.acessorios
+    default: true
+    permission-message: Você não tem permissão para usar este comando.
+  timed:
+    description: Gerencia itens temporizados.
+    usage: /timed <subcomando>
+    permission: itemstatstracker.timed.admin
+    default: op
+    permission-message: Você não tem permissão para usar este comando.

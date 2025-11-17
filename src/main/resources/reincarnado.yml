@@ -1,0 +1,36 @@
+# Configurações de critérios de reincarnação por categoria de item.
+# Define os critérios que um item deve atender para subir de nível de reincarnação.
+
+# Estrutura: categoria -> lista de critérios
+# Cada critério tem:
+#   stat-type: tipo de estatística (ex: "BLOCKS_BROKEN", "DAMAGE_DEALT")
+#   required-value: valor necessário para atingir este nível
+#   display-name-key: chave de tradução para o nome de exibição (opcional)
+
+# Exemplo de uso:
+#   Se um item de categoria "SWORDS" tiver:
+#     - DAMAGE_DEALT >= 1000
+#     - MOB_KILLS >= 50
+#   Então ele pode subir de nível de reincarnação.
+
+# Categorias disponíveis: SWORDS, PICKAXES, ARMOR_PIECES, default
+reincarnado-criteria:
+  default:
+    - stat-type: "BLOCKS_BROKEN"
+      required-value: 1000
+      display-name-key: "stats.blocks_broken"
+  SWORDS:
+    - stat-type: "DAMAGE_DEALT"
+      required-value: 500
+      display-name-key: "stats.damage_dealt"
+    - stat-type: "MOB_KILLS"
+      required-value: 25
+      display-name-key: "stats.mob_kills"
+  PICKAXES:
+    - stat-type: "ORES_BROKEN"
+      required-value: 500
+      display-name-key: "stats.ores_broken"
+  ARMOR_PIECES:
+    - stat-type: "DAMAGE_TAKEN"
+      required-value: 1000
+      display-name-key: "stats.damage_taken"

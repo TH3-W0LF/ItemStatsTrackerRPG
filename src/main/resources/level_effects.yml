@@ -1,0 +1,174 @@
+# Configurações de efeitos aplicados aos itens com base em seu nível de ascensão.
+# Você pode definir efeitos que são ativados quando um item atinge um determinado nível.
+
+# Exemplo de configuração de efeitos por nível
+LEVEL_EFFECTS:
+  # Nível 10: efeitos ativados quando o item atinge o nível 10
+  10:
+    # Efeitos de poção: <TIPO_POÇÃO>: <NÍVEL_AMPLIFICADOR>
+    potion_effects:
+      SPEED: 1 # Velocidade I
+      FAST_DIGGING: 1 # Pressa I (alias para HASTE)
+    # Atributos: <ATRIBUTO_GENÉRICO>: <VALOR>
+    attributes:
+      GENERIC_ATTACK_DAMAGE: 2 # +2 de dano de ataque
+      GENERIC_ARMOR: 1 # +1 de armadura
+
+  # Nível 25: efeitos ativados quando o item atinge o nível 25
+  25:
+    potion_effects:
+      REGENERATION: 1 # Regeneração I
+    attributes:
+      GENERIC_MAX_HEALTH: 2 # +2 de vida máxima
+      GENERIC_MOVEMENT_SPEED: 0.05 # +5% de velocidade de movimento
+    # Bônus de Resistência: <CAUSA_DE_DANO>: <PERCENTUAL_DE_REDUÇÃO>
+    # Causas de Dano Comuns: FALL, FIRE, LAVA, PROJECTILE, MAGIC, ENTITY_ATTACK, ENTITY_EXPLOSION
+    resistance_bonuses:
+      FALL: 5.0 # 5% de resistência a dano de queda
+      PROJECTILE: 2.5 # 2.5% de resistência a projéteis
+ 
+  # Progressão automática sugestiva MMO/RPG
+  # 20/40/60/80/100 — marcos iniciais
+  20:
+    potion_effects:
+      SPEED: 1
+    attributes:
+      GENERIC_ATTACK_SPEED: 0.02
+    commands_on_reach:
+      - "broadcast <yellow><player> atingiu Ascensão <white>20</white>!"
+  40:
+    potion_effects:
+      FAST_DIGGING: 1
+    attributes:
+      GENERIC_ARMOR: 1
+  60:
+    potion_effects:
+      LUCK: 1
+    attributes:
+      GENERIC_ATTACK_DAMAGE: 1
+    resistance_bonuses:
+      PROJECTILE: 2.5
+  80:
+    potion_effects:
+      DAMAGE_RESISTANCE: 0
+    attributes:
+      GENERIC_MOVEMENT_SPEED: 0.02
+  100:
+    potion_effects:
+      REGENERATION: 1
+    attributes:
+      GENERIC_MAX_HEALTH: 2
+    resistance_bonuses:
+      FALL: 5.0
+      PROJECTILE: 2.5
+    attack_bonuses:
+      PLAYER: 2.5
+      MOB: 2.5
+    # Bônus de Ferramenta: <TIPO_DE_BÔNUS>: <PERCENTUAL_DE_AUMENTO>
+    # Tipos de Bônus: MINING_SPEED (Velocidade de Mineração), DROP_CHANCE (Chance de Drop), EXP_BONUS (Bônus de XP)
+    tool_bonuses:
+      MINING_SPEED: 2.5 # 2.5% de aumento na velocidade de mineração
+      DROP_CHANCE: 2.5 # 2.5% de aumento na chance de drop
+      EXP_BONUS: 2.5 # 2.5% de aumento no XP ganho
+    commands_on_reach:
+      - "broadcast <gold><player> alcançou Ascensão <white>100</white>!"
+
+  # 200/300/400/500 — marcos de elite (a cada 100 após 100)
+  200:
+    potion_effects:
+      STRENGTH: 0 # INCREASE_DAMAGE I
+    attributes:
+      GENERIC_ATTACK_DAMAGE: 2
+    resistance_bonuses:
+      ENTITY_ATTACK: 2.5
+      MAGIC: 2.5
+    # Bônus de Ataque: <TIPO_DE_ALVO>: <PERCENTUAL_DE_AUMENTO>
+    # Tipos de Alvo Comuns: PLAYER, MOB, UNDEAD
+    attack_bonuses:
+      PLAYER: 2.5 # 2.5% de aumento de dano contra jogadores
+      MOB: 2.5 # 2.5% de aumento de dano contra mobs
+  300:
+    potion_effects:
+      NIGHT_VISION: 0
+    attributes:
+      GENERIC_MOVEMENT_SPEED: 0.03
+      GENERIC_ARMOR: 1
+    resistance_bonuses:
+      PROJECTILE: 2.5
+      FALL: 2.5
+  400:
+    potion_effects:
+      WATER_BREATHING: 0
+    attributes:
+      GENERIC_MAX_HEALTH: 2
+    resistance_bonuses:
+      FIRE: 5.0
+      LAVA: 5.0
+  500:
+    potion_effects:
+      DAMAGE_RESISTANCE: 1
+    attributes:
+      GENERIC_ATTACK_SPEED: 0.03
+    resistance_bonuses:
+      PROJECTILE: 5.0
+      FALL: 5.0
+      ENTITY_EXPLOSION: 5.0
+    attack_bonuses:
+      PLAYER: 5.0
+      MOB: 5.0
+      UNDEAD: 5.0
+    tool_bonuses:
+      MINING_SPEED: 5.0
+      DROP_CHANCE: 5.0
+      EXP_BONUS: 5.0
+    commands_on_reach:
+      - "broadcast <light_purple><player> agora é um <bold>Ascendente 500</bold>!"
+
+  # 750 e 1000 — marcos lendários (a cada 250 após 500)
+  750:
+    potion_effects:
+      ABSORPTION: 1
+      CONDUIT_POWER: 0
+    attributes:
+      GENERIC_MAX_HEALTH: 2
+      GENERIC_ARMOR_TOUGHNESS: 1
+    resistance_bonuses:
+      MAGIC: 5.0
+      FIRE: 5.0
+      LAVA: 5.0
+    attack_bonuses:
+      PLAYER: 7.5
+      MOB: 7.5
+      UNDEAD: 7.5
+    commands_on_reach:
+      - "broadcast <aqua><player> alcançou Ascensão <white>750</white>!"
+  1000:
+    potion_effects:
+      HERO_OF_THE_VILLAGE: 0
+      LUCK: 2
+    attributes:
+      GENERIC_ATTACK_DAMAGE: 3
+      GENERIC_MOVEMENT_SPEED: 0.03
+    resistance_bonuses:
+      PROJECTILE: 5.0
+      FALL: 5.0
+      FIRE: 5.0
+      LAVA: 5.0
+      MAGIC: 5.0
+      ENTITY_ATTACK: 5.0
+      PLAYER: 5.0  # Resistência a ataques de jogadores (PvP)
+      ENTITY_EXPLOSION: 5.0
+    attack_bonuses:
+      PLAYER: 10.0
+      MOB: 10.0
+      UNDEAD: 10.0
+    tool_bonuses:
+      MINING_SPEED: 10.0
+      DROP_CHANCE: 10.0
+      EXP_BONUS: 10.0
+    commands_on_reach:
+      - "broadcast <gradient:gold:yellow><bold>{player} atingiu Ascensão 1000!</bold></gradient>"
+      # Exemplos de integrações (descomente se usar):
+      # - "ae enchant {player} overload 1"
+      # - "ae enchant {player} gears 3"
+      # - "beacon give {player} example_beacon 1" # exemplo fictício

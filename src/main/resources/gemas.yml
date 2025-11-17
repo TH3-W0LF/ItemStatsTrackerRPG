@@ -1,0 +1,94 @@
+# Configuração de Gemas do ItemStatsTracker
+# Define as gemas disponíveis e seus bônus
+
+# Formato:
+# gemas:
+#   [ID_DO_ITEM_NO_ITEMSADDER]:
+#     display-name: "Nome de exibição da gema (MiniMessage)"
+#     lore-line: "Linha de lore adicional (código legacy & ou MiniMessage)"
+#     stats:
+#       [TIPO_DE_STAT]: [VALOR_NUMERICO]
+
+gemas:
+  itemsadder:gema_forca_t1:
+    display-name: "<red>Gema de Força (T1)</red>"
+    lore-line: "§c+5 Dano de Ataque"
+    stats:
+      ATTACK_DAMAGE: 5.0
+  
+  itemsadder:gema_forca_t2:
+    display-name: "<red>Gema de Força (T2)</red>"
+    lore-line: "§c+10 Dano de Ataque"
+    stats:
+      ATTACK_DAMAGE: 10.0
+  
+  itemsadder:gema_forca_t3:
+    display-name: "<red>Gema de Força (T3)</red>"
+    lore-line: "§c+20 Dano de Ataque"
+    stats:
+      ATTACK_DAMAGE: 20.0
+  
+  itemsadder:gema_vida_t1:
+    display-name: "<green>Gema de Vida (T1)</green>"
+    lore-line: "§a+10 Vida Máxima"
+    stats:
+      MAX_HEALTH: 10.0
+  
+  itemsadder:gema_vida_t2:
+    display-name: "<green>Gema de Vida (T2)</green>"
+    lore-line: "§a+20 Vida Máxima"
+    stats:
+      MAX_HEALTH: 20.0
+  
+  itemsadder:gema_vida_t3:
+    display-name: "<green>Gema de Vida (T3)</green>"
+    lore-line: "§a+40 Vida Máxima"
+    stats:
+      MAX_HEALTH: 40.0
+  
+  itemsadder:gema_defesa_t1:
+    display-name: "<blue>Gema de Defesa (T1)</blue>"
+    lore-line: "§9+5 Armadura"
+    stats:
+      ARMOR: 5.0
+  
+  itemsadder:gema_defesa_t2:
+    display-name: "<blue>Gema de Defesa (T2)</blue>"
+    lore-line: "§9+10 Armadura"
+    stats:
+      ARMOR: 10.0
+  
+  itemsadder:gema_defesa_t3:
+    display-name: "<blue>Gema de Defesa (T3)</blue>"
+    lore-line: "§9+20 Armadura"
+    stats:
+      ARMOR: 20.0
+  
+  itemsadder:gema_velocidade_t1:
+    display-name: "<yellow>Gema de Velocidade (T1)</yellow>"
+    lore-line: "§e+5% Velocidade"
+    stats:
+      MOVEMENT_SPEED: 0.05
+  
+  itemsadder:gema_velocidade_t2:
+    display-name: "<yellow>Gema de Velocidade (T2)</yellow>"
+    lore-line: "§e+10% Velocidade"
+    stats:
+      MOVEMENT_SPEED: 0.10
+  
+  itemsadder:gema_velocidade_t3:
+    display-name: "<yellow>Gema de Velocidade (T3)</yellow>"
+    lore-line: "§e+20% Velocidade"
+    stats:
+      MOVEMENT_SPEED: 0.20
+
+# Tipos de stats disponíveis:
+# ATTACK_DAMAGE: Dano de ataque (+X)
+# MAX_HEALTH: Vida máxima (+X)
+# ARMOR: Armadura (+X)
+# ARMOR_TOUGHNESS: Resistência da armadura (+X)
+# KNOCKBACK_RESISTANCE: Resistência a repulsão (+X, máximo 1.0)
+# MOVEMENT_SPEED: Velocidade de movimento (+X, multiplicador)
+# ATTACK_SPEED: Velocidade de ataque (+X, multiplicador)
+# LUCK: Sorte (+X)
+

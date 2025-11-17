@@ -1,0 +1,86 @@
+# Configuração de Acessórios do ItemStatsTracker
+# Define o layout da GUI de acessórios e quais itens podem ser equipados em cada slot
+
+gui:
+  title: "Seus Acessórios"
+  rows: 3  # Número de linhas do inventário (9 slots por linha)
+  
+  # Definição dos slots da GUI
+  # Formato: [SLOT_INDEX]: { type: "TIPO", placeholder-item: "MATERIAL", placeholder-name: "Nome do placeholder" }
+  slots:
+    10:  # Slot 10 (linha 2, coluna 2)
+      type: "ANEL"
+      placeholder-item: "GRAY_STAINED_GLASS_PANE"
+      placeholder-name: "§7Slot de Anel 1"
+      lore:
+        - "§7Coloque um anel aqui"
+    
+    12:  # Slot 12 (linha 2, coluna 4)
+      type: "ANEL"
+      placeholder-item: "GRAY_STAINED_GLASS_PANE"
+      placeholder-name: "§7Slot de Anel 2"
+      lore:
+        - "§7Coloque um anel aqui"
+    
+    14:  # Slot 14 (linha 2, coluna 6)
+      type: "COLAR"
+      placeholder-item: "GRAY_STAINED_GLASS_PANE"
+      placeholder-name: "§7Slot de Colar"
+      lore:
+        - "§7Coloque um colar aqui"
+    
+    16:  # Slot 16 (linha 2, coluna 8)
+      type: "ASA"
+      placeholder-item: "GRAY_STAINED_GLASS_PANE"
+      placeholder-name: "§7Slot de Asa"
+      lore:
+        - "§7Coloque uma asa aqui"
+    
+    # Exemplo de mais slots (descomente para adicionar)
+    # 28:  # Slot 28 (linha 4, coluna 2)
+    #   type: "BRACELETE"
+    #   placeholder-item: "GRAY_STAINED_GLASS_PANE"
+    #   placeholder-name: "§7Slot de Bracelete"
+    #   lore:
+    #     - "§7Coloque um bracelete aqui"
+
+# Define quais tipos de itens (IDs do ItemsAdder ou tags NBT/PDC) são aceitos em cada tipo de slot
+item-types:
+  ANEL:
+    - "itemsadder:anel_de_forca"
+    - "itemsadder:anel_de_vida"
+    - "itemsadder:anel_de_defesa"
+    - "itemsadder:anel_de_velocidade"
+    # Adicione mais IDs de anéis aqui
+  
+  COLAR:
+    - "itemsadder:colar_de_agilidade"
+    - "itemsadder:colar_de_vitalidade"
+    - "itemsadder:colar_de_protecao"
+    # Adicione mais IDs de colares aqui
+  
+  ASA:
+    - "itemsadder:asas_angelicais"
+    - "itemsadder:asas_demoníacas"
+    - "itemsadder:asas_draconicas"
+    # Adicione mais IDs de asas aqui
+  
+  # Exemplo de mais tipos (descomente para adicionar)
+  # BRACELETE:
+  #   - "itemsadder:bracelete_de_forca"
+  #   - "itemsadder:bracelete_de_resistencia"
+
+# Configurações adicionais
+settings:
+  # Se true, remove o item do cursor automaticamente ao equipar
+  auto-remove-on-equip: true
+  
+  # Som tocado ao equipar um acessório
+  equip-sound: "BLOCK_ANVIL_USE"
+  
+  # Som tocado ao desequipar um acessório
+  unequip-sound: "BLOCK_NOTE_BLOCK_BASS"
+  
+  # Se true, atualiza os stats do jogador imediatamente ao equipar/desequipar
+  auto-update-stats: true
+
