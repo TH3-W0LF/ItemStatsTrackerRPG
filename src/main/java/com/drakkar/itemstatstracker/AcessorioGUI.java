@@ -1,5 +1,8 @@
 package com.drakkar.itemstatstracker;
 
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
@@ -10,11 +13,14 @@ import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public final class AcessorioGUI implements InventoryHolder {
+
+    private static final LegacyComponentSerializer LEGACY_SERIALIZER = LegacyComponentSerializer.legacySection();
 
     private final Inventory inventory;
     private final Player player;
@@ -72,12 +78,16 @@ public final class AcessorioGUI implements InventoryHolder {
                     ItemMeta meta = placeholder.getItemMeta();
                     if (meta != null) {
                         String placeholderName = slotConfig.getString("placeholder-name", "§7Slot de " + slotType);
-                        meta.setDisplayName(org.bukkit.ChatColor.translateAlternateColorCodes('&', placeholderName));
+                        Component displayName = convertLegacyToComponent(placeholderName);
+                        meta.displayName(displayName);
                         
-                        List<String> lore = slotConfig.getStringList("lore");
-                        if (!lore.isEmpty()) {
-                            lore.replaceAll(line -> org.bukkit.ChatColor.translateAlternateColorCodes('&', line));
-                            meta.setLore(lore);
+                        List<String> loreStrings = slotConfig.getStringList("lore");
+                        if (!loreStrings.isEmpty()) {
+                            List<Component> lore = new ArrayList<>();
+                            for (String line : loreStrings) {
+                                lore.add(convertLegacyToComponent(line));
+                            }
+                            meta.lore(lore);
                         }
                         placeholder.setItemMeta(meta);
                     }
@@ -160,12 +170,16 @@ public final class AcessorioGUI implements InventoryHolder {
                 ItemMeta meta = placeholder.getItemMeta();
                 if (meta != null) {
                     String placeholderName = slotConfig.getString("placeholder-name", "§7Slot de " + slotType);
-                    meta.setDisplayName(org.bukkit.ChatColor.translateAlternateColorCodes('&', placeholderName));
+                    Component displayName = convertLegacyToComponent(placeholderName);
+                    meta.displayName(displayName);
                     
-                    List<String> lore = slotConfig.getStringList("lore");
-                    if (!lore.isEmpty()) {
-                        lore.replaceAll(line -> org.bukkit.ChatColor.translateAlternateColorCodes('&', line));
-                        meta.setLore(lore);
+                    List<String> loreStrings = slotConfig.getStringList("lore");
+                    if (!loreStrings.isEmpty()) {
+                        List<Component> lore = new ArrayList<>();
+                        for (String line : loreStrings) {
+                            lore.add(convertLegacyToComponent(line));
+                        }
+                        meta.lore(lore);
                     }
                     placeholder.setItemMeta(meta);
                 }
@@ -182,6 +196,18 @@ public final class AcessorioGUI implements InventoryHolder {
      */
     public Player getPlayer() {
         return player;
+    }
+
+    /**
+     * Converte códigos legacy (&) para Component usando MiniMessage
+     */
+    private Component convertLegacyToComponent(String text) {
+        if (text == null || text.isEmpty()) {
+            return Component.empty();
+        }
+        // Converter & para § primeiro, depois usar LegacyComponentSerializer
+        String converted = text.replace('&', '§');
+        return LEGACY_SERIALIZER.deserialize(converted);
     }
 }
 

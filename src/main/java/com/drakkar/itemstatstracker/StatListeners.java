@@ -527,8 +527,15 @@ public final class StatListeners implements Listener {
                 StatManager.removeOriginalOwner(newItem);
                 // Limpar a lore removendo elementos do plugin
                 LoreManager.updateLore(newItem);
+                // Usar o sistema de ignore para evitar flickering
+                final ItemStatsTracker plugin = ItemStatsTracker.getInstance();
+                plugin.getIgnoreArmorChangeEvent().add(player.getUniqueId());
                 // Atualizar o item no inventário
                 player.getInventory().setItem(event.getNewSlot(), newItem);
+                // Remover do ignore list após um delay
+                plugin.getServer().getScheduler().runTaskLater(plugin, () -> {
+                    plugin.getIgnoreArmorChangeEvent().remove(player.getUniqueId());
+                }, 1L);
             }
         }
 

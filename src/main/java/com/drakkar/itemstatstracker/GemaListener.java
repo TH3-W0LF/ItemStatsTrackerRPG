@@ -94,17 +94,25 @@ public final class GemaListener implements Listener {
         }
         player.setItemOnCursor(cursorItem);
 
+        // Atualizar a lore do item ANTES de atualizar no inventário
+        LoreManager.updateLore(clickedItem);
+
+        // Usar o sistema de ignore para evitar flickering
+        final ItemStatsTracker plugin = ItemStatsTracker.getInstance();
+        plugin.getIgnoreArmorChangeEvent().add(player.getUniqueId());
+
         // Atualizar o item no inventário
         event.setCurrentItem(clickedItem);
 
+        // Remover do ignore list após um delay
+        plugin.getServer().getScheduler().runTaskLater(plugin, () -> {
+            plugin.getIgnoreArmorChangeEvent().remove(player.getUniqueId());
+            // Atualizar stats do jogador (caso o item esteja equipado)
+            StatManager.atualizarStats(player);
+        }, 1L);
+
         // Tocar som
         GemaManager.tocarSomSocar(player);
-
-        // Atualizar a lore do item
-        LoreManager.updateLore(clickedItem);
-
-        // Atualizar stats do jogador (caso o item esteja equipado)
-        StatManager.atualizarStats(player);
 
         // Mensagem de sucesso
         player.sendMessage(net.kyori.adventure.text.minimessage.MiniMessage.miniMessage()

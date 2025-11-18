@@ -99,6 +99,9 @@ public final class ItemStatsTracker extends JavaPlugin {
     public void onEnable() {
         instance = this;
 
+        // Inicializa NamespacedKeys
+        NamespacedKeys.init(this);
+
         // Salva e carrega os arquivos de configuração
         saveDefaultConfig();
         loadYamls();
