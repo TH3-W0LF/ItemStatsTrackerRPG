@@ -85,7 +85,7 @@ tracking-filter:
     # - "outra_chave:id"  # Descomente para adicionar mais tags
 
 # Sistema de limitação de encantamentos por tipo de item e material
-# Define quantos encantamentos de cada tipo (Vanilla, AE, BP) cada item pode ter
+# Define quantos encantamentos de cada tipo (Vanilla, AE) cada item pode ter
 enchantment-limits:
   enabled: true
   
@@ -96,126 +96,99 @@ enchantment-limits:
     HELMET:
       vanilla: 5
       ae: 4
-      bp: 2
     CHESTPLATE:
       vanilla: 5
       ae: 4
-      bp: 2
     LEGGINGS:
       vanilla: 5
       ae: 4
-      bp: 2
     BOOTS:
       vanilla: 5
       ae: 4
-      bp: 2
     SWORDS:
       vanilla: 5
       ae: 4
-      bp: 2
     BOWS:
       vanilla: 5
       ae: 4
-      bp: 2
     TRIDENT:
       vanilla: 5
       ae: 4
-      bp: 2
     MACE:
       vanilla: 5
       ae: 4
-      bp: 2
     PICKAXES:
       vanilla: 5
       ae: 4
-      bp: 2
     AXES:
       vanilla: 5
       ae: 4
-      bp: 2
     SHOVELS:
       vanilla: 5
       ae: 4
-      bp: 2
     HOES:
       vanilla: 5
       ae: 4
-      bp: 2
   
   # Limites por material e tipo de item (prioridade menor que categoria)
-  # Formato: MATERIAL_ITEMTYPE: { vanilla: X, ae: Y, bp: Z }
+  # Formato: MATERIAL_ITEMTYPE: { vanilla: X, ae: Y }
   # Se não houver limite na categoria, será verificado o limite do material específico
   limits:
     # Espadas de Diamante
     DIAMOND_SWORD:
       vanilla: 4
       ae: 3
-      bp: 1
     # Espadas de Netherite
     NETHERITE_SWORD:
       vanilla: 5
       ae: 4
-      bp: 2
     # Picaretas de Diamante
     DIAMOND_PICKAXE:
       vanilla: 4
       ae: 3
-      bp: 1
     # Picaretas de Netherite
     NETHERITE_PICKAXE:
       vanilla: 5
       ae: 4
-      bp: 2
     # Machados de Diamante
     DIAMOND_AXE:
       vanilla: 4
       ae: 3
-      bp: 1
     # Machados de Netherite
     NETHERITE_AXE:
       vanilla: 5
       ae: 4
-      bp: 2
     # Armaduras de Diamante
     DIAMOND_HELMET:
       vanilla: 4
       ae: 3
-      bp: 1
     DIAMOND_CHESTPLATE:
       vanilla: 4
       ae: 3
-      bp: 1
     DIAMOND_LEGGINGS:
       vanilla: 4
       ae: 3
-      bp: 1
     DIAMOND_BOOTS:
       vanilla: 4
       ae: 3
-      bp: 1
     # Armaduras de Netherite
     NETHERITE_HELMET:
       vanilla: 5
       ae: 4
-      bp: 2
     NETHERITE_CHESTPLATE:
       vanilla: 5
       ae: 4
-      bp: 2
     NETHERITE_LEGGINGS:
       vanilla: 5
       ae: 4
-      bp: 2
     NETHERITE_BOOTS:
       vanilla: 5
       ae: 4
-      bp: 2
   # Mensagens de erro
   messages:
     limit-reached: "<red>Este item já atingiu o limite de encantamentos <type> (<current>/<max>).</red>"
     limit-reached-vanilla: "<red>Este item já atingiu o limite de encantamentos Vanilla (<current>/<max>).</red>"
     limit-reached-ae: "<red>Este item já atingiu o limite de encantamentos AdvancedEnchantments (<current>/<max>).</red>"
-    limit-reached-bp: "<red>Este item já atingiu o limite de encantamentos BeaconPower (<current>/<max>).</red>"
 
 # Configuração dos conjuntos de armadura e seus bônus
 armor-sets:
@@ -408,9 +381,11 @@ timed-items:
   messages:
     # Mensagem exibida quando um jogador recebe um item temporizado
     # Placeholders: %seconds% - tempo em segundos
-    give_msg: "§aVocê recebeu um item temporizado por %seconds% segundos."
+    # Usa MiniMessage com gradientes bonitos
+    give_msg: "<gradient:#00ff88:#00ffaa>✓</gradient> <gradient:#ff8c42:#ffd700>Você recebeu um item temporizado por <white>%seconds% segundos</white>.</gradient>"
     # Mensagem exibida quando um item expira
-    expired_msg: "§cUm item expirou e foi removido."
+    # Usa MiniMessage com gradientes bonitos
+    expired_msg: "<gradient:#ff4d4d:#ff6b6b>⚠</gradient> <gradient:#ff4d4d:#ff8c42>Um item expirou e foi removido.</gradient>"
   
   # Configuração da lore
   lore:

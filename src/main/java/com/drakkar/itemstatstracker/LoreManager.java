@@ -234,13 +234,11 @@ public final class LoreManager {
 
         if (loreFormat == null || loreFormat.isEmpty()) {
                 // Formato padrão para encantamentos não configurados
-                // Usa cores diferentes baseado no prefixo (AE = roxo, BP = azul)
+                // Usa cores diferentes baseado no prefixo (AE = roxo)
                 // Obter ícone variado baseado no nome do efeito
                 String icon = getEnchantmentIcon(baseKey);
                 if (baseKey.startsWith("AE:")) {
                     loreFormat = "<gradient:#9d50bb:#6e48aa>" + icon + " %display_name% %roman_level%</gradient>";
-                } else if (baseKey.startsWith("BP:")) {
-                    loreFormat = "<gradient:#00c9ff:#92fe9d>" + icon + " %display_name% %roman_level%</gradient>";
                 } else {
             loreFormat = "<gray>" + icon + " %display_name% %roman_level%</gray>";
                 }
@@ -281,7 +279,7 @@ public final class LoreManager {
             return "Desconhecido";
         }
         
-        // Remove prefixos comuns (AE:, BP:, etc.)
+        // Remove prefixos comuns (AE:, etc.)
         String name = baseKey;
         if (name.contains(":")) {
             String[] parts = name.split(":");
@@ -568,7 +566,7 @@ public final class LoreManager {
                 int currentLevel = 0;
                 
                 if (isCustomEnchant) {
-                    // Encantamento mágico/customizado (AE:ENCHANT, BP:ENCHANT, etc.)
+                    // Encantamento mágico/customizado (AE:ENCHANT, etc.)
                     // Obter nível atual do PDC
                     String normalizedKey = StatManager.normalizeCustomEffect(enchantKey);
                     List<String> itemCustomEffects = StatManager.getCustomEffects(item);
@@ -1431,28 +1429,20 @@ public final class LoreManager {
             }
         }
         
-        // Adicionar seção de Mágicos (AE/BP) se houver
-        // Contar encantamentos AE e BP
+        // Adicionar seção de Mágicos (AE) se houver
+        // Contar encantamentos AE
         int aeCount = 0;
-        int bpCount = 0;
         for (String effectEntry : customEffects) {
             if (effectEntry != null) {
                 String effectUpper = effectEntry.toUpperCase(Locale.ROOT);
                 if (effectUpper.startsWith("AE:")) {
                     aeCount++;
-                } else if (effectUpper.startsWith("BP:")) {
-                    bpCount++;
                 }
             }
         }
-        int magicalCount = aeCount + bpCount;
+        int magicalCount = aeCount;
         int aeLimit = getEnchantmentLimit(item, "ae");
-        int bpLimit = getEnchantmentLimit(item, "bp");
-        int magicalLimit = (aeLimit >= 0 ? aeLimit : 0) + (bpLimit >= 0 ? bpLimit : 0);
-        // Se ambos os limites forem -1, usar -1 para indicar sem limite
-        if (aeLimit < 0 && bpLimit < 0) {
-            magicalLimit = -1;
-        }
+        int magicalLimit = aeLimit >= 0 ? aeLimit : -1;
         
         // Sempre mostrar seção mágica se houver encantamentos ou se o sistema de limites estiver habilitado
         boolean showMagicalSection = !aeEffects.isEmpty() || magicalLimit >= 0;

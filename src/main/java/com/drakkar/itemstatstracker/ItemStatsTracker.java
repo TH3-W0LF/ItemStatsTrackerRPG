@@ -126,6 +126,7 @@ public final class ItemStatsTracker extends JavaPlugin {
                 timedItemExpirationTask.start();
                 
                 getServer().getPluginManager().registerEvents(new com.drakkar.itemstatstracker.timed.TimedItemListener(this, timedItemManager), this);
+                getServer().getPluginManager().registerEvents(new com.drakkar.itemstatstracker.timed.TimedItemVisualUpdater(timedItemManager), this);
                 
                 getLogger().info("Sistema de itens temporizados inicializado.");
             } catch (Exception e) {

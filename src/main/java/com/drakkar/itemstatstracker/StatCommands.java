@@ -130,7 +130,7 @@ public final class StatCommands implements CommandExecutor, TabCompleter {
             }
             case "timer" -> {
                 if (args.length < 2) {
-                    sender.sendMessage(MiniMessage.miniMessage().deserialize("<red>Uso: /ist timer <segundos></red>"));
+                    sender.sendMessage(MiniMessage.miniMessage().deserialize("<gradient:#ff4d4d:#ff6b6b>⚠</gradient> <gray>Uso: <white>/ist timer <segundos></white></gray>"));
                     return true;
                 }
                 
@@ -144,25 +144,25 @@ public final class StatCommands implements CommandExecutor, TabCompleter {
                 try {
                     seconds = Long.parseLong(args[1]);
                 } catch (NumberFormatException e) {
-                    sender.sendMessage(MiniMessage.miniMessage().deserialize("<red>Tempo inválido: " + args[1] + "</red>"));
+                    sender.sendMessage(MiniMessage.miniMessage().deserialize("<gradient:#ff4d4d:#ff6b6b>⚠</gradient> <gradient:#ff4d4d:#ff8c42>Tempo inválido: <white>" + args[1] + "</white></gradient>"));
                     return true;
                 }
                 
                 if (seconds <= 0) {
-                    sender.sendMessage(MiniMessage.miniMessage().deserialize("<red>O tempo deve ser maior que 0.</red>"));
+                    sender.sendMessage(MiniMessage.miniMessage().deserialize("<gradient:#ff4d4d:#ff6b6b>⚠</gradient> <gradient:#ff4d4d:#ff8c42>O tempo deve ser maior que 0.</gradient>"));
                     return true;
                 }
                 
                 long maxDuration = plugin.getConfig().getLong("timed-items.limits.max_duration_seconds", 86400);
                 if (seconds > maxDuration) {
-                    sender.sendMessage(MiniMessage.miniMessage().deserialize("<red>O tempo máximo permitido é " + maxDuration + " segundos.</red>"));
+                    sender.sendMessage(MiniMessage.miniMessage().deserialize("<gradient:#ff4d4d:#ff6b6b>⚠</gradient> <gradient:#ff4d4d:#ff8c42>O tempo máximo permitido é <white>" + maxDuration + " segundos</white>.</gradient>"));
                     return true;
                 }
                 
                 // Verificar se o sistema de itens temporizados está ativo
                 com.drakkar.itemstatstracker.timed.TimedItemManager timedManager = plugin.getTimedItemManager();
                 if (timedManager == null) {
-                    sender.sendMessage(MiniMessage.miniMessage().deserialize("<red>O sistema de itens temporizados está desabilitado.</red>"));
+                    sender.sendMessage(MiniMessage.miniMessage().deserialize("<gradient:#ff4d4d:#ff6b6b>⚠</gradient> <gradient:#ff4d4d:#ff8c42>O sistema de itens temporizados está desabilitado.</gradient>"));
                     return true;
                 }
                 
@@ -197,7 +197,7 @@ public final class StatCommands implements CommandExecutor, TabCompleter {
                     pluginInstance.getIgnoreArmorChangeEvent().remove(player.getUniqueId());
                 }, 1L);
                 
-                sender.sendMessage(MiniMessage.miniMessage().deserialize("<green>Timer de " + seconds + " segundos adicionado ao item!</green>"));
+                sender.sendMessage(MiniMessage.miniMessage().deserialize("<gradient:#00ff88:#00ffaa>✓</gradient> <gradient:#ff8c42:#ffd700>Timer de <white>" + seconds + " segundos</white> adicionado ao item!</gradient>"));
                 return true;
             }
             case "set", "add" -> {
@@ -399,7 +399,7 @@ public final class StatCommands implements CommandExecutor, TabCompleter {
                 }
 
                 // Verificar limites de encantamentos
-                String enchantType = effect.pluginId().toUpperCase(Locale.ROOT); // AE, BP, ou VANILLA
+                String enchantType = effect.pluginId().toUpperCase(Locale.ROOT); // AE ou VANILLA
                 if (!checkEnchantmentLimit(player, heldItem, enchantType, existingEffects)) {
                     return true; // Mensagem de erro já foi enviada
                 }
@@ -571,7 +571,7 @@ public final class StatCommands implements CommandExecutor, TabCompleter {
      * Primeiro verifica a categoria do item, depois o material específico.
      * @param player O jogador que está tentando adicionar o encantamento
      * @param item O item que está sendo encantado
-     * @param enchantType O tipo de encantamento (AE, BP, ou VANILLA)
+     * @param enchantType O tipo de encantamento (AE ou VANILLA)
      * @param existingEffects Lista de efeitos customizados já existentes no item
      * @return true se pode adicionar, false se atingiu o limite
      */
@@ -588,8 +588,6 @@ public final class StatCommands implements CommandExecutor, TabCompleter {
         String typeKey;
         if ("AE".equals(enchantType)) {
             typeKey = "ae";
-        } else if ("BP".equals(enchantType)) {
-            typeKey = "bp";
         } else {
             typeKey = "vanilla";
         }
@@ -632,7 +630,7 @@ public final class StatCommands implements CommandExecutor, TabCompleter {
                 currentCount = item.getItemMeta().getEnchants().size();
             }
         } else {
-            // Contar encantamentos customizados (AE ou BP)
+            // Contar encantamentos customizados (AE)
             for (String effect : existingEffects) {
                 String effectUpper = effect.toUpperCase(Locale.ROOT);
                 if (effectUpper.startsWith(enchantType + ":")) {
@@ -870,7 +868,7 @@ public final class StatCommands implements CommandExecutor, TabCompleter {
         }
 
         if (args.length == 2 && "addeffect".equalsIgnoreCase(args[0])) {
-            return partialMatches(args[1], List.of("AE", "BP"));
+            return partialMatches(args[1], List.of("AE"));
         }
 
         if (args.length == 3 && "addeffect".equalsIgnoreCase(args[0])) {
@@ -879,8 +877,6 @@ public final class StatCommands implements CommandExecutor, TabCompleter {
                 if (!suggestions.isEmpty()) {
                     return suggestions.stream().map(s -> s.toUpperCase(Locale.ROOT)).collect(Collectors.toList());
                 }
-            } else if (args[1].equalsIgnoreCase("BP")) {
-                return partialMatches(args[2], List.of("POTION_EFFECT", "EXP_BOOST")); // Exemplos BP
             }
         }
 
@@ -890,14 +886,6 @@ public final class StatCommands implements CommandExecutor, TabCompleter {
                 if (!levels.isEmpty()) {
                     return levels;
                 }
-            } else if (args[1].equalsIgnoreCase("BP") && args[2].equalsIgnoreCase("POTION_EFFECT")) {
-                return partialMatches(args[3], List.of("REGENERATION", "STRENGTH")); // Tipos de poção para BP
-            }
-        }
-        
-        if (args.length == 5 && "addeffect".equalsIgnoreCase(args[0])) {
-            if (args[1].equalsIgnoreCase("BP") && args[2].equalsIgnoreCase("POTION_EFFECT")) {
-                return partialMatches(args[4], List.of("1", "2", "3")); // Níveis para PotionEffect do BP
             }
         }
 

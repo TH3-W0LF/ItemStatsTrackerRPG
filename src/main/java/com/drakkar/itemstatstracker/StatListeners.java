@@ -911,16 +911,16 @@ public final class StatListeners implements Listener {
 
         // Itera sobre os encantamentos configurados para upgrade na categoria
         FileConfiguration enchantmentsConfig = plugin.getEnchantmentsConfig();
-        for (String enchantNameKey : categoryUpgrades.getKeys(false)) { // SHARPNESS, SMITE, AE:LIFESTEAL, BP:ENCHANT
+        for (String enchantNameKey : categoryUpgrades.getKeys(false)) { // SHARPNESS, SMITE, AE:LIFESTEAL
             ConfigurationSection enchantConfig = categoryUpgrades.getConfigurationSection(enchantNameKey);
             if (enchantConfig == null) continue;
             
-            boolean isCustomEnchant = enchantNameKey.contains(":"); // Formato: "AE:ENCHANT" ou "BP:ENCHANT"
+            boolean isCustomEnchant = enchantNameKey.contains(":"); // Formato: "AE:ENCHANT"
             int currentLevel = 0;
             int maxLevel = 1;
             
             if (isCustomEnchant) {
-                // Encantamento mágico/customizado (AE, BP, etc.)
+                // Encantamento mágico/customizado (AE, etc.)
                 String normalizedKey = StatManager.normalizeCustomEffect(enchantNameKey);
                 List<String> customEffects = StatManager.getCustomEffects(item);
                 

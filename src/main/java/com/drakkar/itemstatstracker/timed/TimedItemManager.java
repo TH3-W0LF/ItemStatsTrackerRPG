@@ -128,9 +128,10 @@ public class TimedItemManager {
         // Se não couber no inventário, dropar no chão
         couldnt.values().forEach(it -> player.getWorld().dropItemNaturally(player.getLocation(), it));
         
-        String giveMsg = plugin.getConfig().getString("timed-items.messages.give_msg", 
-                "§aVocê recebeu um item temporizado por %seconds% segundos.");
-        player.sendMessage(giveMsg.replace("%seconds%", String.valueOf(seconds)));
+        String giveMsgRaw = plugin.getConfig().getString("timed-items.messages.give_msg", 
+                "<gradient:#00ff88:#00ffaa>✓</gradient> <gradient:#ff8c42:#ffd700>Você recebeu um item temporizado por <white>%seconds% segundos</white>.</gradient>");
+        String giveMsg = giveMsgRaw.replace("%seconds%", String.valueOf(seconds));
+        player.sendMessage(MINI_MESSAGE.deserialize(giveMsg));
         
         cache.put(id, expireAt);
         
@@ -138,7 +139,7 @@ public class TimedItemManager {
     }
     
     /**
-     * Atualiza ou adiciona a linha de tempo na lore
+     * Atualiza ou adiciona a linha de tempo na lore com estilo bonito
      */
     public List<Component> updateOrAddTimeLore(List<Component> lore, long expireAt) {
         if (lore == null) {
@@ -146,19 +147,17 @@ public class TimedItemManager {
         }
         
         String timeLine = TimeUtil.formatRemaining(expireAt);
-        String prefixRaw = plugin.getConfig().getString("timed-items.lore.prefix", "§7[Expira em] ");
         
-        // Converter códigos legacy (§) para MiniMessage
-        String prefix = convertLegacyToMiniMessage(prefixRaw);
+        // Usar gradiente bonito igual ao resto do plugin
+        // Gradiente laranja/dourado para indicar tempo limitado
+        String formattedTime = "<gradient:#ff8c42:#ffd700>[Expira em] <white>" + timeLine + "</white></gradient>";
+        Component timeComponent = MINI_MESSAGE.deserialize(formattedTime);
         
-        // Montar componente com MiniMessage
-        Component timeComponent = MINI_MESSAGE.deserialize(prefix + "<white>" + timeLine + "</white>");
-        
-        // Procurar linha existente que comece com o prefixo
+        // Procurar linha existente que contenha "Expira em" ou "[Expira em]"
         boolean updated = false;
         for (int i = 0; i < lore.size(); i++) {
             String loreLine = net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer.plainText().serialize(lore.get(i));
-            if (loreLine.contains("[Expira em]") || loreLine.contains("Expira em")) {
+            if (loreLine.contains("[Expira em]") || loreLine.contains("Expira em") || loreLine.contains("Expira em:")) {
                 lore.set(i, timeComponent);
                 updated = true;
                 break;
@@ -176,40 +175,6 @@ public class TimedItemManager {
         }
         
         return lore;
-    }
-    
-    /**
-     * Converte códigos de formatação legacy (§) para tags MiniMessage
-     */
-    private String convertLegacyToMiniMessage(String legacy) {
-        if (legacy == null || legacy.isEmpty()) {
-            return "";
-        }
-        
-        // Mapeamento de cores legacy para MiniMessage
-        return legacy
-            .replace("§0", "<black>")
-            .replace("§1", "<dark_blue>")
-            .replace("§2", "<dark_green>")
-            .replace("§3", "<dark_aqua>")
-            .replace("§4", "<dark_red>")
-            .replace("§5", "<dark_purple>")
-            .replace("§6", "<gold>")
-            .replace("§7", "<gray>")
-            .replace("§8", "<dark_gray>")
-            .replace("§9", "<blue>")
-            .replace("§a", "<green>")
-            .replace("§b", "<aqua>")
-            .replace("§c", "<red>")
-            .replace("§d", "<light_purple>")
-            .replace("§e", "<yellow>")
-            .replace("§f", "<white>")
-            .replace("§l", "<bold>")
-            .replace("§m", "<strikethrough>")
-            .replace("§n", "<underlined>")
-            .replace("§o", "<italic>")
-            .replace("§r", "<reset>")
-            .replace("§k", ""); // Obfuscated - não tem equivalente direto
     }
     
     /**
@@ -250,9 +215,9 @@ public class TimedItemManager {
             if (holder instanceof Player) {
                 Player p = (Player) holder;
                 p.getInventory().setItem(slot, null);
-                String expiredMsg = plugin.getConfig().getString("timed-items.messages.expired_msg", 
-                        "§cUm item expirou e foi removido.");
-                p.sendMessage(expiredMsg);
+                String expiredMsgRaw = plugin.getConfig().getString("timed-items.messages.expired_msg", 
+                        "<gradient:#ff4d4d:#ff6b6b>⚠</gradient> <gradient:#ff4d4d:#ff8c42>Um item expirou e foi removido.</gradient>");
+                p.sendMessage(MINI_MESSAGE.deserialize(expiredMsgRaw));
             } else if (holder instanceof BlockState && holder instanceof InventoryHolder) {
                 Inventory inv = ((InventoryHolder) holder).getInventory();
                 if (inv != null) {
@@ -280,11 +245,10 @@ public class TimedItemManager {
             
             return true;
         } else {
-            // Item não expirado - atualizar lore
-            List<Component> lore = meta.hasLore() ? meta.lore() : new ArrayList<>();
-            List<Component> newLore = updateOrAddTimeLore(lore, expireAt);
-            meta.lore(newLore);
-            stack.setItemMeta(meta);
+            // Item não expirado - NÃO atualizar nada aqui para evitar flicker
+            // A atualização visual da lore será feita pelo TimedItemVisualUpdater quando necessário
+            // (onJoin, onHeld, onInventoryOpen)
+            // O PDC já contém os dados corretos, não precisa ser reescrito
             
             return false;
         }
@@ -342,12 +306,10 @@ public class TimedItemManager {
             
             return true;
         } else {
-            // Item não expirado - atualizar lore
-            List<Component> lore = meta.hasLore() ? meta.lore() : new ArrayList<>();
-            List<Component> newLore = updateOrAddTimeLore(lore, expireAt);
-            meta.lore(newLore);
-            stack.setItemMeta(meta);
-            entityItem.setItemStack(stack);
+            // Item não expirado - NÃO atualizar lore aqui para evitar flicker
+            // A atualização visual da lore será feita pelo TimedItemVisualUpdater quando necessário
+            // Para itens droppados, não precisamos atualizar constantemente
+            // O PDC já contém os dados corretos
             
             return false;
         }
@@ -368,6 +330,41 @@ public class TimedItemManager {
         
         PersistentDataContainer pdc = meta.getPersistentDataContainer();
         return pdc.has(keyTimedTag, PersistentDataType.BYTE);
+    }
+    
+    /**
+     * Obtém o tempo restante em segundos de um item temporizado
+     * @return tempo restante em segundos, ou -1 se não for um item temporizado ou já expirado
+     */
+    public long getRemainingTime(ItemStack stack) {
+        if (stack == null || !stack.hasItemMeta()) {
+            return -1;
+        }
+        
+        ItemMeta meta = stack.getItemMeta();
+        if (meta == null) {
+            return -1;
+        }
+        
+        PersistentDataContainer pdc = meta.getPersistentDataContainer();
+        
+        if (!pdc.has(keyTimedTag, PersistentDataType.BYTE)) {
+            return -1;
+        }
+        
+        if (!pdc.has(keyExpireAt, PersistentDataType.LONG)) {
+            return -1;
+        }
+        
+        long expireAt = pdc.get(keyExpireAt, PersistentDataType.LONG);
+        long now = System.currentTimeMillis();
+        long remaining = expireAt - now;
+        
+        if (remaining <= 0) {
+            return -1;
+        }
+        
+        return remaining / 1000L; // Converter para segundos
     }
     
     // Getters para as keys
