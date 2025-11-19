@@ -52,6 +52,10 @@ public final class StatListeners implements Listener {
     private static Map<PotionEffectType, String> effectStatMapping = new ConcurrentHashMap<>();
     private final Map<UUID, java.util.Map<EquipmentSlot, Long>> lastArmorLoreUpdateMs = new ConcurrentHashMap<>();
     private final Map<UUID, java.util.Set<String>> activeSetStates = new ConcurrentHashMap<>();
+    
+    // Mapa para rastrear estatísticas pendentes de tridentes lançados
+    // Chave: UUID do trident (baseado no item), Valor: Mapa com estatísticas pendentes
+    private final Map<String, java.util.Map<String, Integer>> pendingTridentStats = new ConcurrentHashMap<>();
 
     // Method to load the effect-stat mapping from config.yml
     public static void loadEffectStatMapping() {
@@ -180,15 +184,42 @@ public final class StatListeners implements Listener {
             return;
         }
 
-        if (!(event.getDamager() instanceof Player)) {
+        Player player = null;
+        ItemStack item = null;
+        Trident tridentProjectile = null;
+        
+        // Verificar se o dano foi causado por um jogador diretamente
+        if (event.getDamager() instanceof Player) {
+            player = (Player) event.getDamager();
+            item = player.getInventory().getItemInMainHand();
+        }
+        // Verificar se o dano foi causado por um projétil (trident, flecha, etc.)
+        else if (event.getDamager() instanceof org.bukkit.entity.Projectile) {
+            org.bukkit.entity.Projectile projectile = (org.bukkit.entity.Projectile) event.getDamager();
+            if (projectile.getShooter() instanceof Player) {
+                player = (Player) projectile.getShooter();
+                // Para tridentes, obter o item do trident projetado
+                if (projectile instanceof Trident) {
+                    tridentProjectile = (Trident) projectile;
+                    @SuppressWarnings("deprecation")
+                    ItemStack tridentItem = tridentProjectile.getItem();
+                    item = tridentItem;
+                    // Se o trident retornou ao inventário, usar o item do inventário
+                    if (item == null || item.getType() == Material.AIR) {
+                        item = player.getInventory().getItemInMainHand();
+                    }
+                } else {
+                    // Para outros projéteis, usar o item na mão
+                    item = player.getInventory().getItemInMainHand();
+                }
+            }
+        }
+        
+        if (player == null || item == null || !isTrackable(item)) {
             return;
         }
-
-        Player player = (Player) event.getDamager();
-        ItemStack item = player.getInventory().getItemInMainHand();
-        if (!isTrackable(item)) {
-            return;
-        }
+        
+        final Player finalPlayer = player; // Variável final para usar em lambdas
 
         // Lógica de anulação/compensação: Attack % vs Protection %
         // Trata tanto Players quanto Villagers como alvos PvP
@@ -276,10 +307,69 @@ public final class StatListeners implements Listener {
 
         // Rastreamento específico para tridentes
         if (item.getType() == Material.TRIDENT) {
-            if (StatManager.isStatEnabled(item.getType(), "TRIDENT_DAMAGE")) {
-                StatManager.incrementStat(player, item, "TRIDENT_DAMAGE", (int) event.getDamage());
-                checkAndApplyEnchantmentUpgrade(player, item, "TRIDENT_DAMAGE");
-                statIncremented = true;
+            // Se o trident está na mão do jogador (ataque melee), atualizar diretamente
+            if (event.getDamager() instanceof Player && player.getInventory().getItemInMainHand().equals(item)) {
+                if (StatManager.isStatEnabled(item.getType(), "TRIDENT_DAMAGE")) {
+                    StatManager.incrementStat(player, item, "TRIDENT_DAMAGE", (int) event.getDamage());
+                    checkAndApplyEnchantmentUpgrade(player, item, "TRIDENT_DAMAGE");
+                    statIncremented = true;
+                }
+            }
+            // Se o trident foi lançado como projétil, armazenar estatísticas pendentes
+            // NÃO modificar o item do trident projetado para evitar duplicação
+            else if (tridentProjectile != null) {
+                // NÃO usar trident.getItem() - isso pode causar duplicação
+                // Em vez disso, usar o item que já temos (que pode ser do inventário se o trident retornou)
+                // Ou criar uma chave baseada no jogador e timestamp para rastrear
+                
+                // Se o item ainda está na mão, significa que o trident retornou
+                // Nesse caso, podemos atualizar diretamente
+                ItemStack handItem = finalPlayer.getInventory().getItemInMainHand();
+                if (handItem != null && handItem.getType() == Material.TRIDENT && isTrackable(handItem)) {
+                    // O trident retornou, atualizar diretamente
+                    if (StatManager.isStatEnabled(handItem.getType(), "TRIDENT_DAMAGE")) {
+                        StatManager.incrementStat(finalPlayer, handItem, "TRIDENT_DAMAGE", (int) event.getDamage());
+                        checkAndApplyEnchantmentUpgrade(finalPlayer, handItem, "TRIDENT_DAMAGE");
+                        statIncremented = true;
+                    }
+                    if (StatManager.isStatEnabled(handItem.getType(), "TRIDENT_THROWN")) {
+                        StatManager.incrementStat(finalPlayer, handItem, "TRIDENT_THROWN", 1);
+                        checkAndApplyEnchantmentUpgrade(finalPlayer, handItem, "TRIDENT_THROWN");
+                        statIncremented = true;
+                    }
+                } else {
+                    // O trident ainda está voando, armazenar estatísticas pendentes
+                    // Usar uma chave baseada no jogador e um ID único do trident
+                    String tridentKey = finalPlayer.getUniqueId().toString() + "_trident_" + tridentProjectile.getUniqueId().toString();
+                    
+                    // Armazenar estatísticas pendentes sem modificar o trident projetado
+                    if (StatManager.isStatEnabled(Material.TRIDENT, "TRIDENT_DAMAGE")) {
+                        pendingTridentStats.computeIfAbsent(tridentKey, k -> new ConcurrentHashMap<>())
+                            .merge("TRIDENT_DAMAGE", (int) event.getDamage(), (a, b) -> a + b);
+                    }
+                    if (StatManager.isStatEnabled(Material.TRIDENT, "TRIDENT_THROWN")) {
+                        pendingTridentStats.computeIfAbsent(tridentKey, k -> new ConcurrentHashMap<>())
+                            .merge("TRIDENT_THROWN", 1, (a, b) -> a + b);
+                    }
+                    
+                    // Agendar atualização quando o trident retornar (múltiplos delays para garantir)
+                    final String finalTridentKey = tridentKey;
+                    // Tentar aplicar após 1 segundo
+                    ItemStatsTracker.getInstance().getServer().getScheduler().runTaskLater(
+                        ItemStatsTracker.getInstance(), 
+                        () -> applyPendingTridentStatsByPlayer(finalPlayer, finalTridentKey), 
+                        20L
+                    );
+                    // Tentar aplicar após 2 segundos (backup)
+                    ItemStatsTracker.getInstance().getServer().getScheduler().runTaskLater(
+                        ItemStatsTracker.getInstance(), 
+                        () -> applyPendingTridentStatsByPlayer(finalPlayer, finalTridentKey), 
+                        40L
+                    );
+                }
+                
+                // Não marcar statIncremented para não atualizar o item aqui
+                // As estatísticas serão aplicadas quando o trident retornar
             }
         }
         
@@ -536,6 +626,13 @@ public final class StatListeners implements Listener {
                 plugin.getServer().getScheduler().runTaskLater(plugin, () -> {
                     plugin.getIgnoreArmorChangeEvent().remove(player.getUniqueId());
                 }, 1L);
+            }
+            
+            // Verificar se é um trident que retornou e aplicar estatísticas pendentes
+            if (newItem.getType() == Material.TRIDENT && isTrackable(newItem)) {
+                String tridentKey = createTridentKey(newItem);
+                // Tentar aplicar estatísticas pendentes imediatamente
+                applyPendingTridentStats(player, tridentKey);
             }
         }
 
@@ -1377,30 +1474,200 @@ public final class StatListeners implements Listener {
         Player player = (Player) event.getEntity().getShooter();
         
         // Rastreamento para tridentes lançados
-        if (event.getEntity() instanceof Trident) {
-            Trident trident = (Trident) event.getEntity();
-            ItemStack tridentItem = trident.getItem();
-            if (tridentItem != null && isTrackable(tridentItem)) {
-                if (StatManager.isStatEnabled(tridentItem.getType(), "TRIDENT_THROWN")) {
-                    // Verificar se o tridente ainda está na mão do jogador
-                    // Quando um tridente é lançado, ele é removido da mão
-                    // Se ainda estiver na mão, atualizar; caso contrário, o tridente será
-                    // atualizado quando retornar (com Loyalty) ou quando causar dano
-                    ItemStack handItem = player.getInventory().getItemInMainHand();
-                    
-                    if (handItem != null && handItem.getType() == Material.TRIDENT && 
-                        handItem.isSimilar(tridentItem)) {
-                        // O tridente ainda está na mão, atualizar
-                        StatManager.incrementStat(player, handItem, "TRIDENT_THROWN", 1);
-                        checkAndApplyEnchantmentUpgrade(player, handItem, "TRIDENT_THROWN");
-                        // Garantir que o item ainda é rastreável antes de definir dono
-                        if (isTrackable(handItem) && StatManager.getOriginalOwner(handItem) == null) {
-                            StatManager.setOriginalOwner(handItem, player.getName());
+        // NOTA: Não modificamos o trident projetado para não interferir com o comportamento natural
+        // As estatísticas serão atualizadas quando o trident causar dano ou retornar ao inventário
+        // Este evento apenas marca que um trident foi lançado, mas não atualiza o item aqui
+    }
+    
+    /**
+     * Cria uma chave única para identificar um trident baseado em suas características
+     * NÃO modifica o item - apenas lê características para criar a chave
+     */
+    private String createTridentKey(ItemStack tridentItem) {
+        if (tridentItem == null || !tridentItem.hasItemMeta()) {
+            return UUID.randomUUID().toString();
+        }
+        
+        org.bukkit.inventory.meta.ItemMeta meta = tridentItem.getItemMeta();
+        if (meta == null) {
+            return UUID.randomUUID().toString();
+        }
+        
+        PersistentDataContainer pdc = meta.getPersistentDataContainer();
+        
+        // Tentar usar uma chave única do PDC se existir (sem modificar o item)
+        NamespacedKey uniqueKey = new NamespacedKey(ItemStatsTracker.getInstance(), "trident_unique_id");
+        if (pdc.has(uniqueKey, PersistentDataType.STRING)) {
+            return pdc.get(uniqueKey, PersistentDataType.STRING);
+        }
+        
+        // Se não tem chave única, criar uma baseada em características do item (sem modificar)
+        String owner = StatManager.getOriginalOwner(tridentItem);
+        String displayName = "no_name";
+        if (meta.hasDisplayName()) {
+            net.kyori.adventure.text.Component name = meta.displayName();
+            if (name != null) {
+                displayName = net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer.plainText().serialize(name);
+            }
+        }
+        
+        // Criar uma chave baseada em características (sem modificar o item)
+        // Usar hash do item para criar uma chave mais estável
+        int itemHash = tridentItem.hashCode();
+        String baseKey = (owner != null ? owner : "unknown") + "_" + 
+                        tridentItem.getType().name() + "_" + displayName + "_" + itemHash;
+        
+        return baseKey;
+    }
+    
+    /**
+     * Aplica estatísticas pendentes de um trident quando ele retorna ao inventário
+     * Versão que busca por chave específica
+     */
+    private void applyPendingTridentStats(Player player, String tridentKey) {
+        java.util.Map<String, Integer> pendingStats = pendingTridentStats.remove(tridentKey);
+        if (pendingStats == null || pendingStats.isEmpty()) {
+            return;
+        }
+        
+        // Procurar o trident no inventário do jogador (verificar todos os slots)
+        ItemStack foundTrident = null;
+        EquipmentSlot foundSlot = null;
+        
+        // Verificar mão principal
+        ItemStack mainHand = player.getInventory().getItemInMainHand();
+        if (mainHand != null && mainHand.getType() == Material.TRIDENT && isTrackable(mainHand)) {
+            String invKey = createTridentKey(mainHand);
+            if (invKey.equals(tridentKey)) {
+                foundTrident = mainHand;
+                foundSlot = EquipmentSlot.HAND;
+            }
+        }
+        
+        // Se não encontrou na mão principal, verificar todo o inventário
+        if (foundTrident == null) {
+            for (int i = 0; i < player.getInventory().getSize(); i++) {
+                ItemStack invItem = player.getInventory().getItem(i);
+                if (invItem != null && invItem.getType() == Material.TRIDENT && isTrackable(invItem)) {
+                    String invKey = createTridentKey(invItem);
+                    if (invKey.equals(tridentKey)) {
+                        foundTrident = invItem;
+                        // Determinar o slot
+                        if (i == player.getInventory().getHeldItemSlot()) {
+                            foundSlot = EquipmentSlot.HAND;
+                        } else {
+                            foundSlot = null; // Slot do inventário normal
                         }
-                        updateItemAndIgnoreEvent(player, handItem, EquipmentSlot.HAND);
+                        break;
                     }
-                    // Se o tridente não está mais na mão, não fazer nada aqui
-                    // O tridente será atualizado quando retornar ao inventário ou causar dano
+                }
+            }
+        }
+        
+        // Se encontrou o trident, aplicar as estatísticas
+        if (foundTrident != null) {
+            boolean updated = false;
+            for (java.util.Map.Entry<String, Integer> entry : pendingStats.entrySet()) {
+                String statType = entry.getKey();
+                int value = entry.getValue();
+                
+                if ("TRIDENT_DAMAGE".equals(statType)) {
+                    StatManager.incrementStat(player, foundTrident, statType, value);
+                    checkAndApplyEnchantmentUpgrade(player, foundTrident, statType);
+                    updated = true;
+                } else if ("TRIDENT_THROWN".equals(statType)) {
+                    StatManager.incrementStat(player, foundTrident, statType, value);
+                    checkAndApplyEnchantmentUpgrade(player, foundTrident, statType);
+                    updated = true;
+                }
+            }
+            
+            if (updated) {
+                // Atualizar o item no inventário
+                if (foundSlot == EquipmentSlot.HAND) {
+                    updateItemAndIgnoreEvent(player, foundTrident, EquipmentSlot.HAND);
+                } else {
+                    // Para slots do inventário, atualizar diretamente
+                    ItemStatsTracker.getInstance().getIgnoreArmorChangeEvent().add(player.getUniqueId());
+                    LoreManager.updateLore(foundTrident);
+                    ItemStatsTracker.getInstance().getServer().getScheduler().runTaskLater(
+                        ItemStatsTracker.getInstance(),
+                        () -> ItemStatsTracker.getInstance().getIgnoreArmorChangeEvent().remove(player.getUniqueId()),
+                        1L
+                    );
+                }
+            }
+        }
+    }
+    
+    /**
+     * Aplica estatísticas pendentes de um trident baseado no jogador
+     * Procura qualquer trident do jogador e aplica as estatísticas pendentes
+     */
+    private void applyPendingTridentStatsByPlayer(Player player, String tridentKey) {
+        java.util.Map<String, Integer> pendingStats = pendingTridentStats.remove(tridentKey);
+        if (pendingStats == null || pendingStats.isEmpty()) {
+            return;
+        }
+        
+        // Procurar qualquer trident do jogador no inventário
+        ItemStack foundTrident = null;
+        EquipmentSlot foundSlot = null;
+        
+        // Verificar mão principal primeiro
+        ItemStack mainHand = player.getInventory().getItemInMainHand();
+        if (mainHand != null && mainHand.getType() == Material.TRIDENT && isTrackable(mainHand)) {
+            foundTrident = mainHand;
+            foundSlot = EquipmentSlot.HAND;
+        }
+        
+        // Se não encontrou na mão principal, verificar todo o inventário
+        if (foundTrident == null) {
+            for (int i = 0; i < player.getInventory().getSize(); i++) {
+                ItemStack invItem = player.getInventory().getItem(i);
+                if (invItem != null && invItem.getType() == Material.TRIDENT && isTrackable(invItem)) {
+                    foundTrident = invItem;
+                    if (i == player.getInventory().getHeldItemSlot()) {
+                        foundSlot = EquipmentSlot.HAND;
+                    } else {
+                        foundSlot = null;
+                    }
+                    break;
+                }
+            }
+        }
+        
+        // Se encontrou o trident, aplicar as estatísticas
+        if (foundTrident != null) {
+            boolean updated = false;
+            for (java.util.Map.Entry<String, Integer> entry : pendingStats.entrySet()) {
+                String statType = entry.getKey();
+                int value = entry.getValue();
+                
+                if ("TRIDENT_DAMAGE".equals(statType)) {
+                    StatManager.incrementStat(player, foundTrident, statType, value);
+                    checkAndApplyEnchantmentUpgrade(player, foundTrident, statType);
+                    updated = true;
+                } else if ("TRIDENT_THROWN".equals(statType)) {
+                    StatManager.incrementStat(player, foundTrident, statType, value);
+                    checkAndApplyEnchantmentUpgrade(player, foundTrident, statType);
+                    updated = true;
+                }
+            }
+            
+            if (updated) {
+                // Atualizar o item no inventário
+                if (foundSlot == EquipmentSlot.HAND) {
+                    updateItemAndIgnoreEvent(player, foundTrident, EquipmentSlot.HAND);
+                } else {
+                    // Para slots do inventário, atualizar diretamente
+                    ItemStatsTracker.getInstance().getIgnoreArmorChangeEvent().add(player.getUniqueId());
+                    LoreManager.updateLore(foundTrident);
+                    ItemStatsTracker.getInstance().getServer().getScheduler().runTaskLater(
+                        ItemStatsTracker.getInstance(),
+                        () -> ItemStatsTracker.getInstance().getIgnoreArmorChangeEvent().remove(player.getUniqueId()),
+                        1L
+                    );
                 }
             }
         }

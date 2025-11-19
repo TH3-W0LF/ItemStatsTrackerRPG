@@ -312,9 +312,30 @@ public final class StatCommands implements CommandExecutor, TabCompleter {
                     return true;
                 }
 
-                String rawEffect = args.length == 2
-                    ? args[1]
-                    : String.join(":", Arrays.copyOfRange(args, 1, args.length));
+                // Novo formato: /ist addeffect AE/VN <tipo_item> <encantamento> <nível>
+                // Formato antigo (compatibilidade): /ist addeffect <encantamento>
+                String rawEffect;
+                String itemTypeFilter = null;
+                
+                if (args.length >= 4 && (args[1].equalsIgnoreCase("AE") || args[1].equalsIgnoreCase("VN"))) {
+                    // Novo formato
+                    itemTypeFilter = args[2].toLowerCase(Locale.ROOT);
+                    String enchantName = args[3];
+                    String level = args.length > 4 ? args[4] : "";
+                    rawEffect = args[1] + ":" + enchantName + (level.isEmpty() ? "" : ":" + level);
+                    
+                    // Validar se o tipo de item corresponde ao item na mão
+                    if (!isItemTypeMatch(heldItem.getType(), itemTypeFilter)) {
+                        sender.sendMessage(MiniMessage.miniMessage().deserialize(
+                            "<red>O tipo de item especificado (" + itemTypeFilter + ") não corresponde ao item na mão.</red>"));
+                        return true;
+                    }
+                } else {
+                    // Formato antigo (compatibilidade)
+                    rawEffect = args.length == 2
+                        ? args[1]
+                        : String.join(":", Arrays.copyOfRange(args, 1, args.length));
+                }
 
                 ParsedCustomEffect effect = parseCustomEffect(rawEffect);
                 if (effect == null) {
@@ -356,6 +377,46 @@ public final class StatCommands implements CommandExecutor, TabCompleter {
                             finalBaseKey = withoutUnderscore;
                         }
                     }
+                }
+                
+                // Para encantamentos vanilla (VN), verificar diretamente
+                if ("VN".equalsIgnoreCase(effect.pluginId()) && effect.tokens().length > 1) {
+                    String enchantName = effect.tokens()[1].toUpperCase(Locale.ROOT);
+                    @SuppressWarnings("deprecation")
+                    Enchantment vanillaEnchant = Enchantment.getByKey(NamespacedKey.minecraft(enchantName.toLowerCase(Locale.ROOT)));
+                    if (vanillaEnchant == null) {
+                        sender.sendMessage(MiniMessage.miniMessage().deserialize(
+                            "<red>Encantamento vanilla inválido: " + enchantName + "</red>"));
+                        return true;
+                    }
+                    // Verificar se o encantamento pode ser aplicado ao item
+                    if (!vanillaEnchant.canEnchantItem(heldItem)) {
+                        sender.sendMessage(MiniMessage.miniMessage().deserialize(
+                            "<red>O encantamento " + enchantName + " não pode ser aplicado a este tipo de item.</red>"));
+                        return true;
+                    }
+                    // Para vanilla, aplicar diretamente
+                    int level = effect.providedLevel() > 0 ? effect.providedLevel() : 1;
+                    
+                    // Validar nível (1-30000, exceto encantamentos de nível único que são sempre 1)
+                    if (isSingleLevelEnchantment(enchantName)) {
+                        level = 1; // Forçar nível 1 para encantamentos de nível único
+                    } else {
+                        // Validar que o nível está entre 1 e 30000
+                        if (level < 1) {
+                            level = 1;
+                        } else if (level > 30000) {
+                            sender.sendMessage(MiniMessage.miniMessage().deserialize(
+                                "<red>O nível máximo para encantamentos vanilla é 30.000.</red>"));
+                            return true;
+                        }
+                    }
+                    
+                    heldItem.addUnsafeEnchantment(vanillaEnchant, level);
+                    updateItemAndIgnoreEvent(player, heldItem);
+                    sender.sendMessage(MiniMessage.miniMessage().deserialize(
+                        "<green>Encantamento vanilla " + enchantName + " " + level + " aplicado com sucesso!</green>"));
+                    return true;
                 }
                 
                 if (effectSection == null) {
@@ -868,23 +929,55 @@ public final class StatCommands implements CommandExecutor, TabCompleter {
         }
 
         if (args.length == 2 && "addeffect".equalsIgnoreCase(args[0])) {
-            return partialMatches(args[1], List.of("AE"));
+            return partialMatches(args[1], List.of("AE", "VN"));
         }
 
         if (args.length == 3 && "addeffect".equalsIgnoreCase(args[0])) {
-            if (args[1].equalsIgnoreCase("AE") && sender instanceof Player playerSender && AdvancedEnchantmentsBridge.isAvailable()) {
-                List<String> suggestions = AdvancedEnchantmentsBridge.suggestEnchants(playerSender, args[2]);
-                if (!suggestions.isEmpty()) {
-                    return suggestions.stream().map(s -> s.toUpperCase(Locale.ROOT)).collect(Collectors.toList());
-                }
+            if (args[1].equalsIgnoreCase("AE") || args[1].equalsIgnoreCase("VN")) {
+                // Sugerir tipos de item
+                List<String> itemTypes = List.of("sword", "pickaxe", "axe", "shovel", "hoe", 
+                    "bow", "crossbow", "trident", "mace", "helmet", "chestplate", "leggings", "boots");
+                return partialMatches(args[2], itemTypes);
             }
         }
 
         if (args.length == 4 && "addeffect".equalsIgnoreCase(args[0])) {
             if (args[1].equalsIgnoreCase("AE") && sender instanceof Player playerSender && AdvancedEnchantmentsBridge.isAvailable()) {
-                List<String> levels = AdvancedEnchantmentsBridge.suggestLevels(playerSender, args[2].toLowerCase(Locale.ROOT));
+                // Sugerir encantamentos AE compatíveis com o tipo de item
+                List<String> suggestions = AdvancedEnchantmentsBridge.suggestEnchants(playerSender, args[3]);
+                if (!suggestions.isEmpty()) {
+                    return suggestions.stream().map(s -> s.toUpperCase(Locale.ROOT)).collect(Collectors.toList());
+                }
+            } else if (args[1].equalsIgnoreCase("VN")) {
+                // Sugerir encantamentos vanilla compatíveis com o tipo de item
+                List<String> vanillaEnchants = getVanillaEnchantsForItemType(args[2]);
+                return partialMatches(args[3], vanillaEnchants);
+            }
+        }
+
+        if (args.length == 5 && "addeffect".equalsIgnoreCase(args[0])) {
+            if (args[1].equalsIgnoreCase("AE") && sender instanceof Player playerSender && AdvancedEnchantmentsBridge.isAvailable()) {
+                // Sugerir níveis para encantamentos AE
+                List<String> levels = AdvancedEnchantmentsBridge.suggestLevels(playerSender, args[3].toLowerCase(Locale.ROOT));
                 if (!levels.isEmpty()) {
                     return levels;
+                }
+            } else if (args[1].equalsIgnoreCase("VN")) {
+                // Sugerir níveis para encantamentos vanilla (até 30.000, exceto encantamentos de nível único)
+                String enchantName = args[3].toUpperCase(Locale.ROOT);
+                if (isSingleLevelEnchantment(enchantName)) {
+                    // Encantamentos de nível único (como Mending, Infinity, etc.)
+                    return partialMatches(args[4], List.of("1"));
+                } else {
+                    // Encantamentos que podem ir até 30.000
+                    List<String> commonLevels = new ArrayList<>();
+                    // Adicionar níveis comuns para facilitar
+                    for (int i = 1; i <= 10; i++) {
+                        commonLevels.add(String.valueOf(i));
+                    }
+                    // Adicionar alguns valores altos comuns
+                    commonLevels.addAll(List.of("50", "100", "500", "1000", "5000", "10000", "30000"));
+                    return partialMatches(args[4], commonLevels);
                 }
             }
         }
@@ -1227,5 +1320,129 @@ public final class StatCommands implements CommandExecutor, TabCompleter {
             sb.append(Character.toUpperCase(p.charAt(0))).append(p.substring(1)).append(" ");
         }
         return sb.toString().trim();
+    }
+    
+    /**
+     * Verifica se o tipo de material corresponde ao tipo de item especificado.
+     * @param material O material do item
+     * @param itemType O tipo de item especificado (sword, pickaxe, etc.)
+     * @return true se corresponde, false caso contrário
+     */
+    private boolean isItemTypeMatch(Material material, String itemType) {
+        if (itemType == null || itemType.isEmpty()) {
+            return true; // Sem filtro, aceita tudo
+        }
+        
+        String materialName = material.name().toUpperCase(Locale.ROOT);
+        String itemTypeUpper = itemType.toUpperCase(Locale.ROOT);
+        
+        // Mapeamento de tipos de item para padrões de material
+        switch (itemTypeUpper) {
+            case "SWORD":
+                return materialName.endsWith("_SWORD");
+            case "PICKAXE":
+                return materialName.endsWith("_PICKAXE");
+            case "AXE":
+                return materialName.endsWith("_AXE");
+            case "SHOVEL":
+                return materialName.endsWith("_SHOVEL");
+            case "HOE":
+                return materialName.endsWith("_HOE");
+            case "BOW":
+                return material == Material.BOW;
+            case "CROSSBOW":
+                return material == Material.CROSSBOW;
+            case "TRIDENT":
+                return material == Material.TRIDENT;
+            case "MACE":
+                return material == Material.MACE;
+            case "HELMET":
+                return materialName.endsWith("_HELMET");
+            case "CHESTPLATE":
+                return materialName.endsWith("_CHESTPLATE");
+            case "LEGGINGS":
+                return materialName.endsWith("_LEGGINGS");
+            case "BOOTS":
+                return materialName.endsWith("_BOOTS");
+            default:
+                // Tentar correspondência direta
+                return materialName.contains(itemTypeUpper);
+        }
+    }
+    
+    /**
+     * Obtém os encantamentos vanilla compatíveis com um tipo de item.
+     * @param itemType O tipo de item
+     * @return Lista de nomes de encantamentos vanilla compatíveis
+     */
+    private List<String> getVanillaEnchantsForItemType(String itemType) {
+        List<String> enchants = new ArrayList<>();
+        if (itemType == null || itemType.isEmpty()) {
+            return enchants;
+        }
+        
+        String itemTypeUpper = itemType.toUpperCase(Locale.ROOT);
+        
+        // Encantamentos comuns para espadas
+        if (itemTypeUpper.equals("SWORD")) {
+            enchants.addAll(List.of("SHARPNESS", "SMITE", "BANE_OF_ARTHROPODS", "KNOCKBACK", 
+                "FIRE_ASPECT", "LOOTING", "SWEEPING_EDGE", "UNBREAKING", "MENDING"));
+        }
+        // Encantamentos para picaretas
+        else if (itemTypeUpper.equals("PICKAXE")) {
+            enchants.addAll(List.of("EFFICIENCY", "FORTUNE", "SILK_TOUCH", "UNBREAKING", "MENDING"));
+        }
+        // Encantamentos para machados
+        else if (itemTypeUpper.equals("AXE")) {
+            enchants.addAll(List.of("EFFICIENCY", "FORTUNE", "SILK_TOUCH", "UNBREAKING", "MENDING", "SHARPNESS"));
+        }
+        // Encantamentos para pás
+        else if (itemTypeUpper.equals("SHOVEL")) {
+            enchants.addAll(List.of("EFFICIENCY", "FORTUNE", "SILK_TOUCH", "UNBREAKING", "MENDING"));
+        }
+        // Encantamentos para enxadas
+        else if (itemTypeUpper.equals("HOE")) {
+            enchants.addAll(List.of("EFFICIENCY", "FORTUNE", "SILK_TOUCH", "UNBREAKING", "MENDING"));
+        }
+        // Encantamentos para arcos
+        else if (itemTypeUpper.equals("BOW")) {
+            enchants.addAll(List.of("POWER", "PUNCH", "FLAME", "INFINITY", "UNBREAKING", "MENDING"));
+        }
+        // Encantamentos para bestas
+        else if (itemTypeUpper.equals("CROSSBOW")) {
+            enchants.addAll(List.of("MULTISHOT", "PIERCING", "QUICK_CHARGE", "UNBREAKING", "MENDING"));
+        }
+        // Encantamentos para tridentes
+        else if (itemTypeUpper.equals("TRIDENT")) {
+            enchants.addAll(List.of("IMPALING", "RIPTIDE", "LOYALTY", "CHANNELING", "UNBREAKING", "MENDING"));
+        }
+        // Encantamentos para armaduras
+        else if (itemTypeUpper.equals("HELMET") || itemTypeUpper.equals("CHESTPLATE") || 
+                 itemTypeUpper.equals("LEGGINGS") || itemTypeUpper.equals("BOOTS")) {
+            enchants.addAll(List.of("PROTECTION", "FIRE_PROTECTION", "BLAST_PROTECTION", 
+                "PROJECTILE_PROTECTION", "RESPIRATION", "AQUA_AFFINITY", "THORNS", 
+                "DEPTH_STRIDER", "SOUL_SPEED", "SWIFT_SNEAK", "UNBREAKING", "MENDING"));
+        }
+        
+        return enchants;
+    }
+    
+    /**
+     * Verifica se um encantamento vanilla é de nível único (como Mending, Infinity, etc.).
+     * @param enchantName Nome do encantamento em maiúsculas
+     * @return true se for de nível único, false caso contrário
+     */
+    private boolean isSingleLevelEnchantment(String enchantName) {
+        if (enchantName == null || enchantName.isEmpty()) {
+            return false;
+        }
+        
+        // Encantamentos que são sempre nível único
+        List<String> singleLevelEnchants = List.of(
+            "MENDING", "INFINITY", "SILK_TOUCH", "AQUA_AFFINITY", 
+            "BINDING_CURSE", "VANISHING_CURSE", "FLAME", "CHANNELING"
+        );
+        
+        return singleLevelEnchants.contains(enchantName);
     }
 }
